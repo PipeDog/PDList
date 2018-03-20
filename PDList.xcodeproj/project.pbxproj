@@ -7,6 +7,16 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		EC223FCA2060DD6D00E80D7A /* PDListSectionController.m in Sources */ = {isa = PBXBuildFile; fileRef = EC223FC92060DD6D00E80D7A /* PDListSectionController.m */; };
+		EC223FCD2060DD8600E80D7A /* PDListAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = EC223FCC2060DD8600E80D7A /* PDListAdapter.m */; };
+		EC223FD32060F72D00E80D7A /* PDListAdapter+UITableViewDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = EC223FD22060F72D00E80D7A /* PDListAdapter+UITableViewDataSource.m */; };
+		EC223FD62060F73700E80D7A /* PDListAdapter+UITableViewDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = EC223FD52060F73700E80D7A /* PDListAdapter+UITableViewDelegate.m */; };
+		EC223FE0206115EE00E80D7A /* PDTestCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EC223FDF206115EE00E80D7A /* PDTestCell.m */; };
+		EC223FE92061171600E80D7A /* UITableViewCell+PDCellAutoHeight.m in Sources */ = {isa = PBXBuildFile; fileRef = EC223FE22061171600E80D7A /* UITableViewCell+PDCellAutoHeight.m */; };
+		EC223FEA2061171600E80D7A /* PDCellAutoHeightConst.m in Sources */ = {isa = PBXBuildFile; fileRef = EC223FE32061171600E80D7A /* PDCellAutoHeightConst.m */; };
+		EC223FEB2061171600E80D7A /* UITableView+PDCellAutoHeight.m in Sources */ = {isa = PBXBuildFile; fileRef = EC223FE42061171600E80D7A /* UITableView+PDCellAutoHeight.m */; };
+		EC223FEE206117EE00E80D7A /* PDFirstSectionController.m in Sources */ = {isa = PBXBuildFile; fileRef = EC223FED206117EE00E80D7A /* PDFirstSectionController.m */; };
+		EC223FF1206117FE00E80D7A /* PDSecondSectionController.m in Sources */ = {isa = PBXBuildFile; fileRef = EC223FF0206117FE00E80D7A /* PDSecondSectionController.m */; };
 		EC7C91552060DB8B00F69FAB /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = EC7C91542060DB8B00F69FAB /* AppDelegate.m */; };
 		EC7C91582060DB8B00F69FAB /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EC7C91572060DB8B00F69FAB /* ViewController.m */; };
 		EC7C915B2060DB8B00F69FAB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EC7C91592060DB8B00F69FAB /* Main.storyboard */; };
@@ -35,6 +45,29 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		EC223FC82060DD6D00E80D7A /* PDListSectionController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PDListSectionController.h; sourceTree = "<group>"; };
+		EC223FC92060DD6D00E80D7A /* PDListSectionController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PDListSectionController.m; sourceTree = "<group>"; };
+		EC223FCB2060DD8600E80D7A /* PDListAdapter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PDListAdapter.h; sourceTree = "<group>"; };
+		EC223FCC2060DD8600E80D7A /* PDListAdapter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PDListAdapter.m; sourceTree = "<group>"; };
+		EC223FD12060F72D00E80D7A /* PDListAdapter+UITableViewDataSource.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "PDListAdapter+UITableViewDataSource.h"; sourceTree = "<group>"; };
+		EC223FD22060F72D00E80D7A /* PDListAdapter+UITableViewDataSource.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "PDListAdapter+UITableViewDataSource.m"; sourceTree = "<group>"; };
+		EC223FD42060F73700E80D7A /* PDListAdapter+UITableViewDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "PDListAdapter+UITableViewDelegate.h"; sourceTree = "<group>"; };
+		EC223FD52060F73700E80D7A /* PDListAdapter+UITableViewDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "PDListAdapter+UITableViewDelegate.m"; sourceTree = "<group>"; };
+		EC223FD82060FAE400E80D7A /* PDListSectionControllerDataSource.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PDListSectionControllerDataSource.h; sourceTree = "<group>"; };
+		EC223FD92060FAF400E80D7A /* PDListSectionControllerDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PDListSectionControllerDelegate.h; sourceTree = "<group>"; };
+		EC223FDE206115EE00E80D7A /* PDTestCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PDTestCell.h; sourceTree = "<group>"; };
+		EC223FDF206115EE00E80D7A /* PDTestCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PDTestCell.m; sourceTree = "<group>"; };
+		EC223FE22061171600E80D7A /* UITableViewCell+PDCellAutoHeight.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITableViewCell+PDCellAutoHeight.m"; sourceTree = "<group>"; };
+		EC223FE32061171600E80D7A /* PDCellAutoHeightConst.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PDCellAutoHeightConst.m; sourceTree = "<group>"; };
+		EC223FE42061171600E80D7A /* UITableView+PDCellAutoHeight.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITableView+PDCellAutoHeight.m"; sourceTree = "<group>"; };
+		EC223FE52061171600E80D7A /* UITableViewCell+PDCellAutoHeight.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITableViewCell+PDCellAutoHeight.h"; sourceTree = "<group>"; };
+		EC223FE62061171600E80D7A /* PDCellAutoHeightProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PDCellAutoHeightProtocol.h; sourceTree = "<group>"; };
+		EC223FE72061171600E80D7A /* UITableView+PDCellAutoHeight.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITableView+PDCellAutoHeight.h"; sourceTree = "<group>"; };
+		EC223FE82061171600E80D7A /* PDCellAutoHeightConst.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PDCellAutoHeightConst.h; sourceTree = "<group>"; };
+		EC223FEC206117EE00E80D7A /* PDFirstSectionController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PDFirstSectionController.h; sourceTree = "<group>"; };
+		EC223FED206117EE00E80D7A /* PDFirstSectionController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PDFirstSectionController.m; sourceTree = "<group>"; };
+		EC223FEF206117FE00E80D7A /* PDSecondSectionController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PDSecondSectionController.h; sourceTree = "<group>"; };
+		EC223FF0206117FE00E80D7A /* PDSecondSectionController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PDSecondSectionController.m; sourceTree = "<group>"; };
 		EC7C91502060DB8B00F69FAB /* PDList.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PDList.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EC7C91532060DB8B00F69FAB /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		EC7C91542060DB8B00F69FAB /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -78,6 +111,20 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		EC223FE1206116FF00E80D7A /* PDCellAutoHeight */ = {
+			isa = PBXGroup;
+			children = (
+				EC223FE82061171600E80D7A /* PDCellAutoHeightConst.h */,
+				EC223FE32061171600E80D7A /* PDCellAutoHeightConst.m */,
+				EC223FE62061171600E80D7A /* PDCellAutoHeightProtocol.h */,
+				EC223FE72061171600E80D7A /* UITableView+PDCellAutoHeight.h */,
+				EC223FE42061171600E80D7A /* UITableView+PDCellAutoHeight.m */,
+				EC223FE52061171600E80D7A /* UITableViewCell+PDCellAutoHeight.h */,
+				EC223FE22061171600E80D7A /* UITableViewCell+PDCellAutoHeight.m */,
+			);
+			path = PDCellAutoHeight;
+			sourceTree = "<group>";
+		};
 		EC7C91472060DB8B00F69FAB = {
 			isa = PBXGroup;
 			children = (
@@ -101,10 +148,18 @@
 		EC7C91522060DB8B00F69FAB /* PDList */ = {
 			isa = PBXGroup;
 			children = (
-				EC7C91532060DB8B00F69FAB /* AppDelegate.h */,
-				EC7C91542060DB8B00F69FAB /* AppDelegate.m */,
+				EC223FE1206116FF00E80D7A /* PDCellAutoHeight */,
+				EC7C91852060DB9100F69FAB /* Source */,
+				EC223FEC206117EE00E80D7A /* PDFirstSectionController.h */,
+				EC223FED206117EE00E80D7A /* PDFirstSectionController.m */,
+				EC223FEF206117FE00E80D7A /* PDSecondSectionController.h */,
+				EC223FF0206117FE00E80D7A /* PDSecondSectionController.m */,
+				EC223FDE206115EE00E80D7A /* PDTestCell.h */,
+				EC223FDF206115EE00E80D7A /* PDTestCell.m */,
 				EC7C91562060DB8B00F69FAB /* ViewController.h */,
 				EC7C91572060DB8B00F69FAB /* ViewController.m */,
+				EC7C91532060DB8B00F69FAB /* AppDelegate.h */,
+				EC7C91542060DB8B00F69FAB /* AppDelegate.m */,
 				EC7C91592060DB8B00F69FAB /* Main.storyboard */,
 				EC7C915C2060DB8B00F69FAB /* Assets.xcassets */,
 				EC7C915E2060DB8B00F69FAB /* LaunchScreen.storyboard */,
@@ -130,6 +185,23 @@
 				EC7C91792060DB8B00F69FAB /* Info.plist */,
 			);
 			path = PDListUITests;
+			sourceTree = "<group>";
+		};
+		EC7C91852060DB9100F69FAB /* Source */ = {
+			isa = PBXGroup;
+			children = (
+				EC223FD82060FAE400E80D7A /* PDListSectionControllerDataSource.h */,
+				EC223FD92060FAF400E80D7A /* PDListSectionControllerDelegate.h */,
+				EC223FC82060DD6D00E80D7A /* PDListSectionController.h */,
+				EC223FC92060DD6D00E80D7A /* PDListSectionController.m */,
+				EC223FCB2060DD8600E80D7A /* PDListAdapter.h */,
+				EC223FCC2060DD8600E80D7A /* PDListAdapter.m */,
+				EC223FD12060F72D00E80D7A /* PDListAdapter+UITableViewDataSource.h */,
+				EC223FD22060F72D00E80D7A /* PDListAdapter+UITableViewDataSource.m */,
+				EC223FD42060F73700E80D7A /* PDListAdapter+UITableViewDelegate.h */,
+				EC223FD52060F73700E80D7A /* PDListAdapter+UITableViewDelegate.m */,
+			);
+			path = Source;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -266,8 +338,18 @@
 			buildActionMask = 2147483647;
 			files = (
 				EC7C91582060DB8B00F69FAB /* ViewController.m in Sources */,
+				EC223FF1206117FE00E80D7A /* PDSecondSectionController.m in Sources */,
+				EC223FE92061171600E80D7A /* UITableViewCell+PDCellAutoHeight.m in Sources */,
+				EC223FCD2060DD8600E80D7A /* PDListAdapter.m in Sources */,
+				EC223FCA2060DD6D00E80D7A /* PDListSectionController.m in Sources */,
+				EC223FE0206115EE00E80D7A /* PDTestCell.m in Sources */,
+				EC223FD62060F73700E80D7A /* PDListAdapter+UITableViewDelegate.m in Sources */,
+				EC223FEA2061171600E80D7A /* PDCellAutoHeightConst.m in Sources */,
+				EC223FEE206117EE00E80D7A /* PDFirstSectionController.m in Sources */,
 				EC7C91632060DB8B00F69FAB /* main.m in Sources */,
+				EC223FD32060F72D00E80D7A /* PDListAdapter+UITableViewDataSource.m in Sources */,
 				EC7C91552060DB8B00F69FAB /* AppDelegate.m in Sources */,
+				EC223FEB2061171600E80D7A /* UITableView+PDCellAutoHeight.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
