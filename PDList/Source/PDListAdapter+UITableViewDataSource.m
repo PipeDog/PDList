@@ -35,7 +35,7 @@
 }
 #pragma clang diagnostic pop
 
-#pragma mark - Handle SectionControllers Methods
+#pragma mark - Config SectionControllers Methods
 - (PDListSectionController *)sectionControllerForSection:(NSInteger)section {
     PDListSectionController *sectionController = [self.sectionControllers objectForKey:@(section)];
     if (!sectionController) {
