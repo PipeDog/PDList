@@ -32,7 +32,7 @@
 }
 
 - (void)reloadSections:(NSIndexSet *)sections withRowAnimation:(UITableViewRowAnimation)animation {
-    for (NSInteger section = sections.firstIndex; section < sections.lastIndex; section ++) {
+    for (NSInteger section = sections.firstIndex; section <= sections.lastIndex; section ++) {
         [self.sectionControllers removeObjectForKey:@(section)];
     }
     [self.tableView reloadSections:sections withRowAnimation:animation];

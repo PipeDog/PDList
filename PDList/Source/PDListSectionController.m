@@ -10,6 +10,12 @@
 
 @implementation PDListSectionController
 
+- (void)dealloc {
+#ifdef DEBUG
+    NSLog(@"%@ dealloc.", self);
+#endif
+}
+
 - (NSInteger)numberOfRowsInSectionController:(PDListSectionController *)sectionController {
     NSAssert(NO, @"This method must be override, (%s).", __FUNCTION__);
     return 0;

@@ -27,6 +27,14 @@
     self.listAdapter.dataSource = self;
 }
 
+- (IBAction)didClickLeftItem:(id)sender {
+    [self.listAdapter reloadSections:[NSIndexSet indexSetWithIndex:1] withRowAnimation:UITableViewRowAnimationLeft];
+}
+
+- (IBAction)didClickRightItem:(id)sender {
+    [self.listAdapter reloadData];
+}
+
 #pragma mark - PDListAdapterDataSource Methods
 - (NSArray *)objectsForListAdapter:(PDListAdapter *)listAdapter {
     return self.dataArray;
