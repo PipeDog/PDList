@@ -37,7 +37,6 @@
         // Config cell data here.
         cell.textLabel.text = self.items[index];
         cell.textLabel.numberOfLines = 0;
-        cell.textLabel.backgroundColor = [[UIColor blueColor] colorWithAlphaComponent:0.3];
     } heightBlock:^CGFloat(NSInteger index) {
         // Return cell height.
         return 50.f + index * 20;
