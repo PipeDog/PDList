@@ -24,6 +24,10 @@ NS_ASSUME_NONNULL_BEGIN
 @protocol PDListSectionControllerDelegate <NSObject>
 
 @optional
+
+- (void)willDisplayCell:(UITableViewCell *)cell forRowAtIndex:(NSInteger)index;
+- (void)didEndDisplayingCell:(UITableViewCell *)cell forRowAtIndex:(NSInteger)index;
+
 - (CGFloat)heightForRowAtIndex:(NSInteger)index;
 - (CGFloat)heightForHeader;
 - (CGFloat)heightForFooter;

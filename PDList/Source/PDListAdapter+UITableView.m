@@ -99,4 +99,18 @@
     }
 }
 
+- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
+    PDListSectionController *sectionController = [self.sectionControllers objectForKey:@(indexPath.section)];
+    if ([sectionController respondsToSelector:@selector(willDisplayCell:forRowAtIndex:)]) {
+        [sectionController willDisplayCell:cell forRowAtIndex:indexPath.row];
+    }
+}
+
+- (void)tableView:(UITableView *)tableView didEndDisplayingCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
+    PDListSectionController *sectionController = [self.sectionControllers objectForKey:@(indexPath.section)];
+    if ([sectionController respondsToSelector:@selector(didEndDisplayingCell:forRowAtIndex:)]) {
+        [sectionController didEndDisplayingCell:cell forRowAtIndex:indexPath.row];
+    }
+}
+
 @end
