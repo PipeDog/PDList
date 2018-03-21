@@ -18,12 +18,12 @@
 }
 
 - (NSInteger)numberOfRows {
-    NSAssert(NO, @"This method must be override, (%s).", __FUNCTION__);
+    PDAssert(NO, @"This method must be override, (%s).", __FUNCTION__);
     return 0;
 }
 
 - (UITableViewCell *)cellForRowAtIndex:(NSInteger)index {
-    NSAssert(NO, @"This method must be override, (%s).", __FUNCTION__);
+    PDAssert(NO, @"This method must be override, (%s).", __FUNCTION__);
     return nil;
 }
 
