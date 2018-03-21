@@ -21,15 +21,15 @@ static NSString *kFirstHeaderViewId = @"kFirstHeaderViewId";
 
 @implementation PDFirstSectionController
 
-- (NSInteger)numberOfRowsInSectionController:(__kindof PDListSectionController *)sectionController {
+- (NSInteger)numberOfRows {
     return self.dataArray.count;
 }
 
-- (CGFloat)heightForHeaderInSectionController:(__kindof PDListSectionController *)sectionController {
+- (CGFloat)heightForHeader {
     return 40.f;
 }
 
-- (CGFloat)sectionController:(__kindof PDListSectionController *)sectionController heightForRowAtIndex:(NSInteger)index {
+- (CGFloat)heightForRowAtIndex:(NSInteger)index {
     NSIndexPath *indexPath = [NSIndexPath indexPathForRow:index inSection:self.section];
     NSString *text = self.dataArray[index];
     
@@ -38,8 +38,8 @@ static NSString *kFirstHeaderViewId = @"kFirstHeaderViewId";
     }];
 }
 
-- (UIView *)viewForHeaderInSectionController:(__kindof PDListSectionController *)sectionController {
-    UITableViewHeaderFooterView *sectionView = [self.listAdapter dequeueReusableHeaderFooterViewWithIdentifier:kFirstHeaderViewId];
+- (UIView *)viewForHeader {
+    UITableViewHeaderFooterView *sectionView = [self dequeueReusableHeaderFooterViewWithIdentifier:kFirstHeaderViewId];
     if (!sectionView) {
         sectionView = [[UITableViewHeaderFooterView alloc] initWithReuseIdentifier:kFirstHeaderViewId];
         
@@ -51,8 +51,8 @@ static NSString *kFirstHeaderViewId = @"kFirstHeaderViewId";
     return sectionView;
 }
 
-- (UITableViewCell *)sectionController:(__kindof PDListSectionController *)sectionController cellForRowAtIndex:(NSInteger)index {
-    PDTestCell *cell = [self.listAdapter dequeueReusableCellWithIdentifier:kFirstCellId];
+- (UITableViewCell *)cellForRowAtIndex:(NSInteger)index {
+    PDTestCell *cell = [self dequeueReusableCellWithIdentifier:kFirstCellId];
     if (!cell) {
         cell = [[PDTestCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:kFirstCellId];
     }
@@ -60,15 +60,13 @@ static NSString *kFirstHeaderViewId = @"kFirstHeaderViewId";
     return cell;
 }
 
-- (void)sectionController:(__kindof PDListSectionController *)sectionController didSelectRowAtIndex:(NSInteger)index {
+- (void)didSelectRowAtIndex:(NSInteger)index {
     NSIndexPath *indexPath = [NSIndexPath indexPathForRow:index inSection:self.section];
     [self.listAdapter.tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
-#pragma mark - Setter Methods
-- (void)setObject:(id)object {
-    [super setObject:object];
-    self.dataArray = (NSArray<NSString *> *)object;
+- (void)didUpdateToObject:(id)object {
+    self.dataArray = object;
 }
 
 @end

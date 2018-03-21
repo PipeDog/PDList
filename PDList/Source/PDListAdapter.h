@@ -16,25 +16,29 @@ NS_ASSUME_NONNULL_BEGIN
 
 @protocol PDListAdapterDataSource <NSObject>
 
+@required
 - (NSArray *)objectsForListAdapter:(PDListAdapter *)listAdapter;
+
 - (PDListSectionController *)listAdapter:(PDListAdapter *)listAdapter sectionControllerForSection:(NSInteger)section;
 
 @end
 
-@interface PDListAdapter : NSObject
+@protocol PDListAdapter <NSObject>
+
+@required
+// Reload list data methods.
+- (void)reloadData;
+- (void)reloadSections:(NSIndexSet *)sections withRowAnimation:(UITableViewRowAnimation)animation;
+
+@end
+
+@interface PDListAdapter : NSObject <PDListAdapter>
 
 @property (nonatomic, weak) id<PDListAdapterDataSource> dataSource;
 @property (nonatomic, weak) UITableView *tableView;
 @property (nonatomic, weak) UIViewController *viewController;
 
 - (instancetype)initWithTableView:(UITableView *)tableView;
-
-- (void)reloadData;
-- (void)reloadSections:(NSIndexSet *)sections withRowAnimation:(UITableViewRowAnimation)animation;
-
-- (nullable __kindof UITableViewCell *)dequeueReusableCellWithIdentifier:(NSString *)identifier;
-- (__kindof UITableViewCell *)dequeueReusableCellWithIdentifier:(NSString *)identifier forIndexPath:(NSIndexPath *)indexPath;
-- (nullable __kindof UITableViewHeaderFooterView *)dequeueReusableHeaderFooterViewWithIdentifier:(NSString *)identifier;
 
 @end
 

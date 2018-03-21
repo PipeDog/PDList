@@ -7,12 +7,8 @@
 //
 
 #import "PDListAdapter.h"
-#import "PDListAdapter+UITableViewDelegate.h"
-#import "PDListAdapter+UITableViewDataSource.h"
-
-@interface PDListAdapter () <PDListAdapter>
-
-@end
+#import "PDListAdapter+UITableView.h"
+#import "PDListAssert.h"
 
 @implementation PDListAdapter
 
@@ -21,33 +17,26 @@
 - (instancetype)initWithTableView:(UITableView *)tableView {
     self = [super init];
     if (self) {
-        [self setTableView:tableView];
+        self.tableView = tableView;
     }
     return self;
 }
 
+#pragma mark - PDListAdapter Methods
 - (void)reloadData {
+    PDAssertMainThread();
+    
     [self.sectionControllers removeAllObjects];
     [self.tableView reloadData];
 }
 
 - (void)reloadSections:(NSIndexSet *)sections withRowAnimation:(UITableViewRowAnimation)animation {
+    PDAssertMainThread();
+    
     for (NSInteger section = sections.firstIndex; section <= sections.lastIndex; section ++) {
         [self.sectionControllers removeObjectForKey:@(section)];
     }
     [self.tableView reloadSections:sections withRowAnimation:animation];
-}
-
-- (UITableViewCell *)dequeueReusableCellWithIdentifier:(NSString *)identifier {
-    return [self.tableView dequeueReusableCellWithIdentifier:identifier];
-}
-
-- (UITableViewCell *)dequeueReusableCellWithIdentifier:(NSString *)identifier forIndexPath:(NSIndexPath *)indexPath {
-    return [self.tableView dequeueReusableCellWithIdentifier:identifier forIndexPath:indexPath];
-}
-
-- (UITableViewHeaderFooterView *)dequeueReusableHeaderFooterViewWithIdentifier:(NSString *)identifier {
-    return [self.tableView dequeueReusableHeaderFooterViewWithIdentifier:identifier];
 }
 
 #pragma mark - Setter Methods
