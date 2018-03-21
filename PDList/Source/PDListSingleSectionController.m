@@ -11,9 +11,9 @@
 
 @interface PDListSingleSectionController ()
 
-@property (nonatomic, strong) Class cellClass;
-@property (nonatomic, copy) PDListCellConfigBlock configBlock;
-@property (nonatomic, copy) PDListCellHeightBlock heightBlock;
+@property (nonatomic, strong, readonly) Class cellClass;
+@property (nonatomic, strong, readonly) PDListCellConfigBlock configBlock;
+@property (nonatomic, strong, readonly) PDListCellHeightBlock heightBlock;
 @property (nonatomic, copy) NSArray *items; // DataSource for singleSectionController.
 
 @end
@@ -30,8 +30,8 @@
     self = [super init];
     if (self) {
         _cellClass = cellClass;
-        _configBlock = configBlock;
-        _heightBlock = heightBlock;
+        _configBlock = [configBlock copy];
+        _heightBlock = [heightBlock copy];
     }
     return self;
 }
