@@ -9,8 +9,16 @@
 #ifndef PDListAssert_h
 #define PDListAssert_h
 
+#ifndef PDAssert
+#define PDAssert(condition, ...) NSCAssert((condition) , ##__VA_ARGS__)
+#endif
+
+#ifndef PDParameterAssert
+#define PDParameterAssert(condition) PDAssert((condition), @"Invalid parameter not satisfying: %@", @#condition)
+#endif
+
 #ifndef PDAssertMainThread
-#define PDAssertMainThread() NSAssert(([NSThread isMainThread] == YES), @"You must operate on the main thread.")
+#define PDAssertMainThread() PDAssert(([NSThread isMainThread] == YES), @"You must operate on the main thread.")
 #endif
 
 #endif /* PDListAssert_h */
