@@ -61,8 +61,7 @@ static NSString *kFirstHeaderViewId = @"kFirstHeaderViewId";
 }
 
 - (void)didSelectRowAtIndex:(NSInteger)index {
-    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:index inSection:self.section];
-    [self.listAdapter.tableView deselectRowAtIndexPath:indexPath animated:YES];
+
 }
 
 - (void)didUpdateToObject:(id)object {

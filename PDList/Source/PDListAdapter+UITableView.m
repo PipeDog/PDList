@@ -91,6 +91,8 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    [tableView deselectRowAtIndexPath:indexPath animated:NO];
+    
     PDListSectionController *sectionController = [self.sectionControllers objectForKey:@(indexPath.section)];
     if ([sectionController respondsToSelector:@selector(didSelectRowAtIndex:)]) {
         [sectionController didSelectRowAtIndex:indexPath.row];

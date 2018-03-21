@@ -48,9 +48,6 @@
 #pragma mark - PDListSingleSectionControllerDelegate
 // Did select cell event callback.
 - (void)sectionController:(PDListSectionController *)sectionController didSelectRowAtIndex:(NSInteger)index {
-    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:index inSection:sectionController.section];
-    [sectionController.listAdapter.tableView deselectRowAtIndexPath:indexPath animated:NO];
-    
     NSLog(@"didSelectRowAtIndex < %zd >.", index);
 }
 

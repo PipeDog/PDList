@@ -61,8 +61,7 @@ static NSString *kSecondHeaderViewId = @"kSecondHeaderViewId";
 }
 
 - (void)didSelectRowAtIndex:(NSInteger)index {
-    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:index inSection:self.section];
-    [self.listAdapter.tableView deselectRowAtIndexPath:indexPath animated:YES];
+
 }
 
 #pragma mark - Setter Methods
