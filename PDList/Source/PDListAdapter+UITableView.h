@@ -23,3 +23,6 @@
 
 @interface PDListAdapter (UITableViewDelegate) <UITableViewDelegate>
 @end
+
+@interface PDListAdapter (UIScrollViewDelegate)
+@end

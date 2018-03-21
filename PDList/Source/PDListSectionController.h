@@ -68,7 +68,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @end
 
-@interface PDListSectionController : NSObject <PDListSectionControllerProvide, PDListSectionController, PDListSectionControllerDataSource, PDListSectionControllerDelegate>
+@interface PDListSectionController : NSObject <PDListSectionControllerProvide, PDListSectionController, PDListSectionControllerDataSource, PDListSectionControllerDelegate, UIScrollViewDelegate>
 
 @property (nonatomic, strong) id object; ///< Data for current sectionController.
 @property (nonatomic, weak) PDListAdapter *listAdapter; ///< ListAdapter for current sectionController.

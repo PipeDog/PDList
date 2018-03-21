@@ -114,3 +114,63 @@
 }
 
 @end
+
+@implementation PDListAdapter (UIScrollViewDelegate)
+
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+    id<UIScrollViewDelegate> scrollViewDelegate = self.scrollViewDelegate;
+    if ([scrollViewDelegate respondsToSelector:@selector(scrollViewDidScroll:)]) {
+        [scrollViewDelegate scrollViewDidScroll:scrollView];
+    }
+    
+    NSArray<PDListSectionController *> *visibleSectionControllers = [self visibleSectionControllers];
+    for (PDListSectionController *sectionController in visibleSectionControllers) {
+        if ([sectionController respondsToSelector:@selector(scrollViewDidScroll:)]) {
+            [sectionController scrollViewDidScroll:scrollView];
+        }
+    }
+}
+
+- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView {
+    id<UIScrollViewDelegate> scrollViewDelegate = self.scrollViewDelegate;
+    if ([scrollViewDelegate respondsToSelector:@selector(scrollViewWillBeginDragging:)]) {
+        [scrollViewDelegate scrollViewWillBeginDragging:scrollView];
+    }
+    
+    NSArray<PDListSectionController *> *visibleSectionControllers = [self visibleSectionControllers];
+    for (PDListSectionController *sectionController in visibleSectionControllers) {
+        if ([sectionController respondsToSelector:@selector(scrollViewWillBeginDragging:)]) {
+            [sectionController scrollViewWillBeginDragging:scrollView];
+        }
+    }
+}
+
+- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate {
+    id<UIScrollViewDelegate> scrollViewDelegate = self.scrollViewDelegate;
+    if ([scrollViewDelegate respondsToSelector:@selector(scrollViewDidEndDragging:willDecelerate:)]) {
+        [scrollViewDelegate scrollViewDidEndDragging:scrollView willDecelerate:decelerate];
+    }
+    
+    NSArray<PDListSectionController *> *visibleSectionControllers = [self visibleSectionControllers];
+    for (PDListSectionController *sectionController in visibleSectionControllers) {
+        if ([sectionController respondsToSelector:@selector(scrollViewDidEndDragging:willDecelerate:)]) {
+            [sectionController scrollViewDidEndDragging:scrollView willDecelerate:decelerate];
+        }
+    }
+}
+
+- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
+    id<UIScrollViewDelegate> scrollViewDelegate = self.scrollViewDelegate;
+    if ([scrollViewDelegate respondsToSelector:@selector(scrollViewDidEndDecelerating:)]) {
+        [scrollViewDelegate scrollViewDidEndDecelerating:scrollView];
+    }
+    
+    NSArray<PDListSectionController *> *visibleSectionControllers = [self visibleSectionControllers];
+    for (PDListSectionController *sectionController in visibleSectionControllers) {
+        if ([sectionController respondsToSelector:@selector(scrollViewDidEndDecelerating:)]) {
+            [sectionController scrollViewDidEndDecelerating:scrollView];
+        }
+    }
+}
+
+@end
