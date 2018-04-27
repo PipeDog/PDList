@@ -28,33 +28,24 @@
 }
 
 #pragma mark - PDListSectionController
-- (UITableViewCell *)dequeueReusableCellWithIdentifier:(NSString *)identifier {
-    return [self.listAdapter.tableView dequeueReusableCellWithIdentifier:identifier];
+- (UITableViewCell *)dequeueReusableCellWithStyle:(UITableViewCellStyle)style forClass:(Class)aClass {
+    NSString *cellIdentifier = [NSString stringWithFormat:@"%@_%@", aClass, [NSNumber numberWithInteger:style]];
+    UITableViewCell *cell = [self.listAdapter.tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+    if (!cell) {
+        cell = [[aClass alloc] initWithStyle:style reuseIdentifier:cellIdentifier];
+    }
+    PDAssert(cell, @"Cell can not be null!");
+    return cell;
 }
 
-- (UITableViewCell *)dequeueReusableCellWithIdentifier:(NSString *)identifier forIndex:(NSInteger)index {
-    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:index inSection:self.section];
-    return [self.listAdapter.tableView dequeueReusableCellWithIdentifier:identifier forIndexPath:indexPath];
-}
-
-- (UITableViewHeaderFooterView *)dequeueReusableHeaderFooterViewWithIdentifier:(NSString *)identifier {
-    return [self.listAdapter.tableView dequeueReusableHeaderFooterViewWithIdentifier:identifier];
-}
-
-- (void)registerNib:(UINib *)nib forCellReuseIdentifier:(NSString *)identifier {
-    [self.listAdapter.tableView registerNib:nil forCellReuseIdentifier:identifier];
-}
-
-- (void)registerClass:(Class)cellClass forCellReuseIdentifier:(NSString *)identifier {
-    [self.listAdapter.tableView registerClass:cellClass forCellReuseIdentifier:identifier];
-}
-
-- (void)registerNib:(UINib *)nib forHeaderFooterViewReuseIdentifier:(NSString *)identifier {
-    [self.listAdapter.tableView registerNib:nib forHeaderFooterViewReuseIdentifier:identifier];
-}
-
-- (void)registerClass:(Class)aClass forHeaderFooterViewReuseIdentifier:(NSString *)identifier {
-    [self.listAdapter.tableView registerClass:aClass forHeaderFooterViewReuseIdentifier:identifier];
+- (UITableViewHeaderFooterView *)dequeueReusableHeaderFooterViewForClass:(Class)aClass {
+    NSString *sectionViewIdentifier = NSStringFromClass(aClass);
+    UITableViewHeaderFooterView *sectionView = [self.listAdapter.tableView dequeueReusableHeaderFooterViewWithIdentifier:sectionViewIdentifier];
+    if (!sectionView) {
+        sectionView = [[aClass alloc] initWithReuseIdentifier:sectionViewIdentifier];
+    }
+    PDAssert(sectionView, @"SectionView can not be null!");
+    return sectionView;
 }
 
 - (void)reloadData {
@@ -77,13 +68,7 @@
 
 #pragma mark - PDListSectionControllerOverride
 - (void)didUpdateToObject:(id)object {
-    
-}
-
-#pragma mark - Setter Methods
-- (void)setObject:(id)object {
-    _object = object;
-    [self didUpdateToObject:_object];
+    PDAssert(NO, @"This method must be override, (%s).", __FUNCTION__);
 }
 
 @end

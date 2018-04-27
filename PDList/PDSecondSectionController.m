@@ -30,14 +30,15 @@ static NSString *kSecondHeaderViewId = @"kSecondHeaderViewId";
 }
 
 - (UIView *)viewForHeader {
-    UITableViewHeaderFooterView *sectionView = [self dequeueReusableHeaderFooterViewWithIdentifier:kSecondHeaderViewId];
-    if (!sectionView) {
-        sectionView = [[UITableViewHeaderFooterView alloc] initWithReuseIdentifier:kSecondHeaderViewId];
-        
-        UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 200, 40)];
-        label.text = @"Section 2 Header View";
-        label.backgroundColor = [[UIColor blueColor] colorWithAlphaComponent:0.2];
-        [sectionView addSubview:label];
+    UITableViewHeaderFooterView *sectionView = [self dequeueReusableHeaderFooterViewForClass:[UITableViewHeaderFooterView class]];
+    
+    UILabel *textLabel = [sectionView viewWithTag:1000];
+    if (!textLabel) {
+        textLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 200, 40)];
+        textLabel.tag = 1000;
+        textLabel.text = @"Section 2 Header View";
+        textLabel.backgroundColor = [[UIColor blueColor] colorWithAlphaComponent:0.2];
+        [sectionView addSubview:textLabel];
     }
     return sectionView;
 }
@@ -52,10 +53,7 @@ static NSString *kSecondHeaderViewId = @"kSecondHeaderViewId";
 }
 
 - (UITableViewCell *)cellForRowAtIndex:(NSInteger)index {
-    PDTestCell *cell = [self dequeueReusableCellWithIdentifier:kSecondCellId];
-    if (!cell) {
-        cell = [[PDTestCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:kSecondCellId];
-    }
+    PDTestCell *cell = [self dequeueReusableCellWithStyle:UITableViewCellStyleDefault forClass:[PDTestCell class]];
     [cell configData:self.dataArray[index]];
     return cell;
 }

@@ -50,7 +50,7 @@
 #pragma mark - Getter Methods
 - (UITableView *)tableView {
     if (!_tableView) {
-        _tableView = [[UITableView alloc] initWithFrame:self.view.bounds style:UITableViewStylePlain];
+        _tableView = [[UITableView alloc] initWithFrame:self.view.bounds style:UITableViewStyleGrouped];
         _tableView.tableHeaderView = [[UIView alloc] init];
         [self.view addSubview:_tableView];
     }

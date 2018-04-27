@@ -38,9 +38,9 @@
         sectionController = [self.dataSource listAdapter:self sectionControllerForSection:section];
         
         NSArray *objects = [self.dataSource objectsForListAdapter:self];
-        sectionController.object = [objects objectAtIndex:section];
         sectionController.listAdapter = self;
         sectionController.section = section;
+        [sectionController didUpdateToObject:objects[section]];
     }
     [self.sectionControllers setObject:sectionController forKey:@(section)];
     return sectionController;
@@ -110,6 +110,29 @@
     PDListSectionController *sectionController = [self.sectionControllers objectForKey:@(indexPath.section)];
     if ([sectionController respondsToSelector:@selector(didEndDisplayingCell:forRowAtIndex:)]) {
         [sectionController didEndDisplayingCell:cell forRowAtIndex:indexPath.row];
+    }
+}
+
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
+    PDListSectionController *sectionController = [self.sectionControllers objectForKey:@(indexPath.section)];
+    if ([sectionController respondsToSelector:@selector(canEditRowAtIndex:)]) {
+        return [sectionController canEditRowAtIndex:indexPath.row];
+    }
+    return NO;
+}
+
+- (UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath {
+    PDListSectionController *sectionController = [self.sectionControllers objectForKey:@(indexPath.section)];
+    if ([sectionController respondsToSelector:@selector(editingStyleAtIndex:)]) {
+        return [sectionController editingStyleAtIndex:indexPath.row];
+    }
+    return UITableViewCellEditingStyleNone;
+}
+
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
+    PDListSectionController *sectionController = [self.sectionControllers objectForKey:@(indexPath.section)];
+    if ([sectionController respondsToSelector:@selector(commitEditingStyle:forRowAtIndex:)]) {
+        [sectionController commitEditingStyle:editingStyle forRowAtIndex:indexPath.row];
     }
 }
 

@@ -42,11 +42,7 @@
 }
 
 - (UITableViewCell *)cellForRowAtIndex:(NSInteger)index {
-    NSString *const reuseId = [NSString stringWithFormat:@"%@", self.cellClass];
-    UITableViewCell *cell = [self dequeueReusableCellWithIdentifier:reuseId];
-    if (!cell) {
-        cell = [[self.cellClass alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:reuseId];
-    }
+    UITableViewCell *cell = [self dequeueReusableCellWithStyle:UITableViewCellStyleDefault forClass:self.cellClass];
     self.configBlock(index, cell);
     return cell;
 }

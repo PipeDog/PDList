@@ -24,7 +24,6 @@ NS_ASSUME_NONNULL_BEGIN
 @protocol PDListSectionControllerDelegate <NSObject>
 
 @optional
-
 - (void)willDisplayCell:(UITableViewCell *)cell forRowAtIndex:(NSInteger)index;
 - (void)didEndDisplayingCell:(UITableViewCell *)cell forRowAtIndex:(NSInteger)index;
 
@@ -37,26 +36,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)didSelectRowAtIndex:(NSInteger)index;
 
-@end
-
-@protocol PDListSectionControllerProvide <NSObject>
-
-@required
-// Dequeue reusable cells and headerFooterViews.
-- (nullable __kindof UITableViewCell *)dequeueReusableCellWithIdentifier:(NSString *)identifier;
-- (__kindof UITableViewCell *)dequeueReusableCellWithIdentifier:(NSString *)identifier forIndex:(NSInteger)index;
-- (nullable __kindof UITableViewHeaderFooterView *)dequeueReusableHeaderFooterViewWithIdentifier:(NSString *)identifier;
-
-// Register cells and headerFooterViews.
-- (void)registerNib:(nullable UINib *)nib forCellReuseIdentifier:(NSString *)identifier;
-- (void)registerClass:(nullable Class)cellClass forCellReuseIdentifier:(NSString *)identifier;
-
-- (void)registerNib:(nullable UINib *)nib forHeaderFooterViewReuseIdentifier:(NSString *)identifier;
-- (void)registerClass:(nullable Class)aClass forHeaderFooterViewReuseIdentifier:(NSString *)identifier;
-
-// Reload sectionController data.
-- (void)reloadData;
-- (void)reloadRows:(NSArray<NSNumber *> *)rows withRowAnimation:(UITableViewRowAnimation)animation;
+- (BOOL)canEditRowAtIndex:(NSInteger)index;
+- (UITableViewCellEditingStyle)editingStyleAtIndex:(NSInteger)index;
+- (void)commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndex:(NSInteger)index;
 
 @end
 
@@ -68,11 +50,16 @@ NS_ASSUME_NONNULL_BEGIN
 
 @end
 
-@interface PDListSectionController : NSObject <PDListSectionControllerProvide, PDListSectionController, PDListSectionControllerDataSource, PDListSectionControllerDelegate, UIScrollViewDelegate>
+@interface PDListSectionController : NSObject <PDListSectionController, PDListSectionControllerDataSource, PDListSectionControllerDelegate, UIScrollViewDelegate>
 
-@property (nonatomic, strong) id object; ///< Data for current sectionController.
-@property (nonatomic, weak) PDListAdapter *listAdapter; ///< ListAdapter for current sectionController.
-@property (nonatomic, assign) NSInteger section; ///< Section in tableView for current sectionController.
+@property (nonatomic, weak) PDListAdapter *listAdapter;
+@property (nonatomic, assign) NSInteger section;
+
+- (__kindof UITableViewCell *)dequeueReusableCellWithStyle:(UITableViewCellStyle)style forClass:(Class)aClass;
+- (__kindof UITableViewHeaderFooterView *)dequeueReusableHeaderFooterViewForClass:(Class)aClass;
+
+- (void)reloadData;
+- (void)reloadRows:(NSArray<NSNumber *> *)rows withRowAnimation:(UITableViewRowAnimation)animation;
 
 @end
 
