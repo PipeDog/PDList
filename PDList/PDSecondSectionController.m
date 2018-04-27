@@ -10,9 +10,6 @@
 #import "UITableView+PDCellAutoHeight.h"
 #import "PDTestCell.h"
 
-static NSString *kSecondCellId = @"kSecondCellId";
-static NSString *kSecondHeaderViewId = @"kSecondHeaderViewId";
-
 @interface PDSecondSectionController ()
 
 @property (nonatomic, copy) NSArray<NSString *> *dataArray;

@@ -10,9 +10,6 @@
 #import "UITableView+PDCellAutoHeight.h"
 #import "PDTestCell.h"
 
-static NSString *kFirstCellId = @"kFirstCellId";
-static NSString *kFirstHeaderViewId = @"kFirstHeaderViewId";
-
 @interface PDFirstSectionController ()
 
 @property (nonatomic, copy) NSArray<NSString *> *dataArray;
