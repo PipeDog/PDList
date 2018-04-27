@@ -23,18 +23,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @end
 
-@protocol PDListAdapter <NSObject>
-
-@required
-// Reload list data methods.
-- (void)reloadData;
-- (void)reloadSections:(NSIndexSet *)sections withRowAnimation:(UITableViewRowAnimation)animation;
-
-- (NSArray<PDListSectionController *> *)visibleSectionControllers;
-
-@end
-
-@interface PDListAdapter : NSObject <PDListAdapter>
+@interface PDListAdapter : NSObject
 
 @property (nonatomic, weak) id<PDListAdapterDataSource> dataSource;
 @property (nonatomic, weak) id<UIScrollViewDelegate> scrollViewDelegate;
@@ -43,6 +32,11 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, weak) UIViewController *viewController;
 
 - (instancetype)initWithTableView:(UITableView *)tableView;
+
+- (void)reloadData;
+- (void)reloadSections:(NSIndexSet *)sections withRowAnimation:(UITableViewRowAnimation)animation;
+
+- (NSArray<PDListSectionController *> *)visibleSectionControllers;
 
 @end
 
