@@ -9,12 +9,14 @@
 #import "PDListAdapter+UITableView.h"
 #import "PDListSectionController.h"
 
+static CGFloat const kUITableViewCellDefaultHeight = 44.f;
+
 @implementation PDListAdapter (UITableViewDataSource)
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    if (!self.dataSource) return 0;
-    if (![self.dataSource respondsToSelector:@selector(objectsForListAdapter:)]) return 0;
-    
+    if (![self.dataSource respondsToSelector:@selector(objectsForListAdapter:)]) {
+        return kUITableViewCellDefaultHeight;
+    }
     return [self.dataSource objectsForListAdapter:self].count;
 }
 
@@ -38,8 +40,9 @@
         sectionController = [self.dataSource listAdapter:self sectionControllerForSection:section];
         
         NSArray *objects = [self.dataSource objectsForListAdapter:self];
-        sectionController.listAdapter = self;
+        sectionController.updater = self;
         sectionController.section = section;
+        sectionController.tableView = self.tableView;
         [sectionController didUpdateToObject:objects[section]];
     }
     [self.sectionControllers setObject:sectionController forKey:@(section)];
@@ -141,9 +144,9 @@
 @implementation PDListAdapter (UIScrollViewDelegate)
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
-    id<UIScrollViewDelegate> scrollViewDelegate = self.scrollViewDelegate;
-    if ([scrollViewDelegate respondsToSelector:@selector(scrollViewDidScroll:)]) {
-        [scrollViewDelegate scrollViewDidScroll:scrollView];
+    id<UIScrollViewDelegate> scrollDelegate = self.scrollDelegate;
+    if ([scrollDelegate respondsToSelector:@selector(scrollViewDidScroll:)]) {
+        [scrollDelegate scrollViewDidScroll:scrollView];
     }
     
     NSArray<PDListSectionController *> *visibleSectionControllers = [self visibleSectionControllers];
@@ -155,9 +158,9 @@
 }
 
 - (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView {
-    id<UIScrollViewDelegate> scrollViewDelegate = self.scrollViewDelegate;
-    if ([scrollViewDelegate respondsToSelector:@selector(scrollViewWillBeginDragging:)]) {
-        [scrollViewDelegate scrollViewWillBeginDragging:scrollView];
+    id<UIScrollViewDelegate> scrollDelegate = self.scrollDelegate;
+    if ([scrollDelegate respondsToSelector:@selector(scrollViewWillBeginDragging:)]) {
+        [scrollDelegate scrollViewWillBeginDragging:scrollView];
     }
     
     NSArray<PDListSectionController *> *visibleSectionControllers = [self visibleSectionControllers];
@@ -169,9 +172,9 @@
 }
 
 - (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate {
-    id<UIScrollViewDelegate> scrollViewDelegate = self.scrollViewDelegate;
-    if ([scrollViewDelegate respondsToSelector:@selector(scrollViewDidEndDragging:willDecelerate:)]) {
-        [scrollViewDelegate scrollViewDidEndDragging:scrollView willDecelerate:decelerate];
+    id<UIScrollViewDelegate> scrollDelegate = self.scrollDelegate;
+    if ([scrollDelegate respondsToSelector:@selector(scrollViewDidEndDragging:willDecelerate:)]) {
+        [scrollDelegate scrollViewDidEndDragging:scrollView willDecelerate:decelerate];
     }
     
     NSArray<PDListSectionController *> *visibleSectionControllers = [self visibleSectionControllers];
@@ -183,9 +186,9 @@
 }
 
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
-    id<UIScrollViewDelegate> scrollViewDelegate = self.scrollViewDelegate;
-    if ([scrollViewDelegate respondsToSelector:@selector(scrollViewDidEndDecelerating:)]) {
-        [scrollViewDelegate scrollViewDidEndDecelerating:scrollView];
+    id<UIScrollViewDelegate> scrollDelegate = self.scrollDelegate;
+    if ([scrollDelegate respondsToSelector:@selector(scrollViewDidEndDecelerating:)]) {
+        [scrollDelegate scrollViewDidEndDecelerating:scrollView];
     }
     
     NSArray<PDListSectionController *> *visibleSectionControllers = [self visibleSectionControllers];

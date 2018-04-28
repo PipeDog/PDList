@@ -30,7 +30,7 @@
     NSIndexPath *indexPath = [NSIndexPath indexPathForRow:index inSection:self.section];
     NSString *text = self.dataArray[index];
     
-    return [self.listAdapter.tableView pd_heightForRowAtIndexPath:indexPath config:^(PDTestCell *cell) {
+    return [self.tableView pd_heightForRowAtIndexPath:indexPath config:^(PDTestCell *cell) {
         [cell configData:text];
     }];
 }

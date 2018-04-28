@@ -22,7 +22,7 @@
     return self;
 }
 
-#pragma mark - PDListAdapter Methods
+#pragma mark - PDListUpdater Methods
 - (void)reloadData {
     PDAssertMainThread();
     
@@ -39,20 +39,10 @@
     [self.tableView reloadSections:sections withRowAnimation:animation];
 }
 
-- (NSArray<PDListSectionController *> *)visibleSectionControllers {
+- (void)reloadRowsAtIndexPaths:(NSArray<NSIndexPath *> *)indexPaths withRowAnimation:(UITableViewRowAnimation)animation {
     PDAssertMainThread();
-    
-    NSMutableSet *visibleSectionControllers = [NSMutableSet new];
-    NSArray<NSIndexPath *> *visibleIndexPaths = [self.tableView.indexPathsForVisibleRows copy];
-    
-    for (NSIndexPath *indexPath in visibleIndexPaths) {
-        PDListSectionController *sectionController = [self.sectionControllers objectForKey:@(indexPath.section)];
-        PDAssert(sectionController != nil, @"Section controller nil for cell in section %zd", indexPath.section);
-        if (sectionController) {
-            [visibleSectionControllers addObject:sectionController];
-        }
-    }
-    return [visibleSectionControllers allObjects];
+
+    [self.tableView reloadRowsAtIndexPaths:indexPaths withRowAnimation:animation];
 }
 
 #pragma mark - Setter Methods
@@ -82,6 +72,22 @@
         }
     }
     return _viewController;
+}
+
+- (NSArray<PDListSectionController *> *)visibleSectionControllers {
+    PDAssertMainThread();
+    
+    NSMutableSet *visibleSectionControllers = [NSMutableSet new];
+    NSArray<NSIndexPath *> *visibleIndexPaths = [self.tableView.indexPathsForVisibleRows copy];
+    
+    for (NSIndexPath *indexPath in visibleIndexPaths) {
+        PDListSectionController *sectionController = [self.sectionControllers objectForKey:@(indexPath.section)];
+        PDAssert(sectionController != nil, @"Section controller nil for cell in section %zd", indexPath.section);
+        if (sectionController) {
+            [visibleSectionControllers addObject:sectionController];
+        }
+    }
+    return [visibleSectionControllers allObjects];
 }
 
 @end

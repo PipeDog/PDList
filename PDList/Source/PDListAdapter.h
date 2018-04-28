@@ -18,25 +18,28 @@ NS_ASSUME_NONNULL_BEGIN
 
 @required
 - (NSArray *)objectsForListAdapter:(PDListAdapter *)listAdapter;
-
 - (PDListSectionController *)listAdapter:(PDListAdapter *)listAdapter sectionControllerForSection:(NSInteger)section;
 
 @end
 
-@interface PDListAdapter : NSObject
+@protocol PDListUpdater <NSObject>
 
-@property (nonatomic, weak) id<PDListAdapterDataSource> dataSource;
-@property (nonatomic, weak) id<UIScrollViewDelegate> scrollViewDelegate;
-
-@property (nonatomic, weak) UITableView *tableView;
-@property (nonatomic, weak) UIViewController *viewController;
-
-- (instancetype)initWithTableView:(UITableView *)tableView;
-
+@required
 - (void)reloadData;
 - (void)reloadSections:(NSIndexSet *)sections withRowAnimation:(UITableViewRowAnimation)animation;
+- (void)reloadRowsAtIndexPaths:(NSArray<NSIndexPath *> *)indexPaths withRowAnimation:(UITableViewRowAnimation)animation;
 
-- (NSArray<PDListSectionController *> *)visibleSectionControllers;
+@end
+
+@interface PDListAdapter : NSObject <PDListUpdater>
+
+@property (nonatomic, weak) id<PDListAdapterDataSource> dataSource;
+@property (nonatomic, weak) UITableView *tableView;
+@property (nonatomic, weak) UIViewController *viewController;
+@property (nonatomic, weak, nullable) id<UIScrollViewDelegate> scrollDelegate;
+@property (nonatomic, readonly) NSArray<PDListSectionController *> *visibleSectionControllers;
+
+- (instancetype)initWithTableView:(UITableView *)tableView;
 
 @end
 

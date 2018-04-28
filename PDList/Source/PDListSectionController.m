@@ -30,7 +30,7 @@
 #pragma mark - PDListSectionController
 - (UITableViewCell *)dequeueReusableCellWithStyle:(UITableViewCellStyle)style forClass:(Class)aClass {
     NSString *cellIdentifier = [NSString stringWithFormat:@"%@_%@", aClass, [NSNumber numberWithInteger:style]];
-    UITableViewCell *cell = [self.listAdapter.tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+    UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:cellIdentifier];
     if (!cell) {
         cell = [[aClass alloc] initWithStyle:style reuseIdentifier:cellIdentifier];
     }
@@ -40,30 +40,12 @@
 
 - (UITableViewHeaderFooterView *)dequeueReusableHeaderFooterViewForClass:(Class)aClass {
     NSString *sectionViewIdentifier = NSStringFromClass(aClass);
-    UITableViewHeaderFooterView *sectionView = [self.listAdapter.tableView dequeueReusableHeaderFooterViewWithIdentifier:sectionViewIdentifier];
+    UITableViewHeaderFooterView *sectionView = [self.tableView dequeueReusableHeaderFooterViewWithIdentifier:sectionViewIdentifier];
     if (!sectionView) {
         sectionView = [[aClass alloc] initWithReuseIdentifier:sectionViewIdentifier];
     }
     PDAssert(sectionView, @"SectionView can not be null!");
     return sectionView;
-}
-
-- (void)reloadData {
-    PDAssertMainThread();
-    
-    [self.listAdapter reloadSections:[NSIndexSet indexSetWithIndex:self.section] withRowAnimation:UITableViewRowAnimationNone];
-}
-
-- (void)reloadRows:(NSArray<NSNumber *> *)rows withRowAnimation:(UITableViewRowAnimation)animation {
-    PDAssertMainThread();
-    
-    NSMutableArray<NSIndexPath *> *indexPaths = [NSMutableArray array];
-
-    for (NSNumber *row in rows) {
-        NSIndexPath *indexPath = [NSIndexPath indexPathForRow:[row integerValue] inSection:self.section];
-        [indexPaths addObject:indexPath];
-    }
-    [self.listAdapter.tableView reloadRowsAtIndexPaths:[indexPaths copy] withRowAnimation:animation];
 }
 
 #pragma mark - PDListSectionControllerOverride

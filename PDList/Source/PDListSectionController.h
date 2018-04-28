@@ -9,10 +9,10 @@
 #import <Foundation/Foundation.h>
 #import "PDListAdapter.h"
 
+// Override PDListSectionControllerDataSource and PDListSectionControllerDelegate methods in custom sectionController.
+
 NS_ASSUME_NONNULL_BEGIN
-/*
- You should override PDListSectionControllerDataSource and PDListSectionControllerDelegate methods in custom sectionController.
- */
+
 @protocol PDListSectionControllerDataSource <NSObject>
 
 @required
@@ -45,21 +45,19 @@ NS_ASSUME_NONNULL_BEGIN
 @protocol PDListSectionController <NSObject>
 
 @required
-// Receive data, you should override this method to trans data.
+// Receive data, override this method to trans data.
 - (void)didUpdateToObject:(id)object;
 
 @end
 
 @interface PDListSectionController : NSObject <PDListSectionController, PDListSectionControllerDataSource, PDListSectionControllerDelegate, UIScrollViewDelegate>
 
-@property (nonatomic, weak) PDListAdapter *listAdapter;
+@property (nonatomic, weak) id<PDListUpdater> updater;
+@property (nonatomic, weak) UITableView *tableView;
 @property (nonatomic, assign) NSInteger section;
 
 - (__kindof UITableViewCell *)dequeueReusableCellWithStyle:(UITableViewCellStyle)style forClass:(Class)aClass;
 - (__kindof UITableViewHeaderFooterView *)dequeueReusableHeaderFooterViewForClass:(Class)aClass;
-
-- (void)reloadData;
-- (void)reloadRows:(NSArray<NSNumber *> *)rows withRowAnimation:(UITableViewRowAnimation)animation;
 
 @end
 
