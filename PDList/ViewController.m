@@ -21,6 +21,11 @@
 
 @implementation ViewController
 
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    [self.listAdapter reloadData];
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
@@ -45,6 +50,12 @@
         return [[PDFirstSectionController alloc] init];
     }
     return [[PDSecondSectionController alloc] init];
+}
+
+- (UIView *)emptyViewForListAdapter:(PDListAdapter *)listAdapter {
+    UIView *emptyView = [[UIView alloc] initWithFrame:self.view.bounds];
+    emptyView.backgroundColor = [[UIColor blueColor] colorWithAlphaComponent:0.2];
+    return emptyView;
 }
 
 #pragma mark - Getter Methods

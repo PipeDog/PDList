@@ -14,9 +14,9 @@ static CGFloat const kUITableViewCellDefaultHeight = 44.f;
 @implementation PDListAdapter (UITableViewDataSource)
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    if (![self.dataSource respondsToSelector:@selector(objectsForListAdapter:)]) {
-        return kUITableViewCellDefaultHeight;
-    }
+    if (!self.dataSource) return 0;
+    if (![self.dataSource respondsToSelector:@selector(objectsForListAdapter:)]) return 0;
+    
     return [self.dataSource objectsForListAdapter:self].count;
 }
 
@@ -58,7 +58,7 @@ static CGFloat const kUITableViewCellDefaultHeight = 44.f;
     if ([sectionController respondsToSelector:@selector(heightForRowAtIndex:)]) {
         return [sectionController heightForRowAtIndex:indexPath.row];
     }
-    return 44.f;
+    return kUITableViewCellDefaultHeight;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {

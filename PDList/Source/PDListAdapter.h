@@ -16,15 +16,16 @@ NS_ASSUME_NONNULL_BEGIN
 
 @protocol PDListAdapterDataSource <NSObject>
 
-@required
 - (NSArray *)objectsForListAdapter:(PDListAdapter *)listAdapter;
 - (PDListSectionController *)listAdapter:(PDListAdapter *)listAdapter sectionControllerForSection:(NSInteger)section;
+
+@optional
+- (UIView *)emptyViewForListAdapter:(PDListAdapter *)listAdapter;
 
 @end
 
 @protocol PDListUpdater <NSObject>
 
-@required
 - (void)reloadData;
 - (void)reloadSections:(NSIndexSet *)sections withRowAnimation:(UITableViewRowAnimation)animation;
 - (void)reloadRowsAtIndexPaths:(NSArray<NSIndexPath *> *)indexPaths withRowAnimation:(UITableViewRowAnimation)animation;

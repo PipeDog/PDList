@@ -10,6 +10,12 @@
 #import "PDListAdapter+UITableView.h"
 #import "PDListAssert.h"
 
+@interface PDListAdapter ()
+
+@property (nonatomic, strong) UIView *emptyView;
+
+@end
+
 @implementation PDListAdapter
 
 @synthesize sectionControllers = _sectionControllers;
@@ -26,12 +32,15 @@
 - (void)reloadData {
     PDAssertMainThread();
     
+    [self addEmptyViewIfNecessary];
     [self.sectionControllers removeAllObjects];
     [self.tableView reloadData];
 }
 
 - (void)reloadSections:(NSIndexSet *)sections withRowAnimation:(UITableViewRowAnimation)animation {
     PDAssertMainThread();
+    
+    [self addEmptyViewIfNecessary];
     
     for (NSInteger section = sections.firstIndex; section <= sections.lastIndex; section ++) {
         [self.sectionControllers removeObjectForKey:@(section)];
@@ -42,7 +51,24 @@
 - (void)reloadRowsAtIndexPaths:(NSArray<NSIndexPath *> *)indexPaths withRowAnimation:(UITableViewRowAnimation)animation {
     PDAssertMainThread();
 
+    [self addEmptyViewIfNecessary];
+    
+    for (NSIndexPath *indexPath in indexPaths) {
+        [self.sectionControllers removeObjectForKey:@(indexPath.section)];
+    }
     [self.tableView reloadRowsAtIndexPaths:indexPaths withRowAnimation:animation];
+}
+
+- (void)addEmptyViewIfNecessary {
+    if (_emptyView) {
+        [_emptyView removeFromSuperview];
+        _emptyView = nil;
+    }
+    
+    if ([self.dataSource objectsForListAdapter:self].count == 0) {
+        self.emptyView = [self.dataSource emptyViewForListAdapter:self];
+        [self.tableView addSubview:self.emptyView];
+    }
 }
 
 #pragma mark - Setter Methods
