@@ -60,6 +60,8 @@
 }
 
 - (void)addEmptyViewIfNecessary {
+    if (![self.dataSource respondsToSelector:@selector(emptyViewForListAdapter:)]) return;
+    
     if (_emptyView) {
         [_emptyView removeFromSuperview];
         _emptyView = nil;
