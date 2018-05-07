@@ -9,8 +9,6 @@
 #import <Foundation/Foundation.h>
 #import "PDListAdapter.h"
 
-// Override PDListSectionControllerDataSource and PDListSectionControllerDelegate methods in custom sectionController.
-
 NS_ASSUME_NONNULL_BEGIN
 
 @protocol PDListSectionControllerDataSource <NSObject>
@@ -42,22 +40,13 @@ NS_ASSUME_NONNULL_BEGIN
 
 @end
 
-@protocol PDListSectionController <NSObject>
+@interface PDListSectionController : NSObject <PDListSectionControllerDataSource, PDListSectionControllerDelegate, UIScrollViewDelegate>
 
-@required
-// Receive data, override this method to trans data.
-- (void)didUpdateToObject:(id)object;
-
-@end
-
-@interface PDListSectionController : NSObject <PDListSectionController, PDListSectionControllerDataSource, PDListSectionControllerDelegate, UIScrollViewDelegate>
-
-@property (nonatomic, weak) id<PDListUpdater> updater;
-@property (nonatomic, weak) UITableView *tableView;
 @property (nonatomic, assign) NSInteger section;
+@property (nonatomic, weak) id<PDListUpdater> updater;
+@property (nonatomic, weak) id<PDListTableContext> tableContext;
 
-- (__kindof UITableViewCell *)dequeueReusableCellWithStyle:(UITableViewCellStyle)style forClass:(Class)aClass;
-- (__kindof UITableViewHeaderFooterView *)dequeueReusableHeaderFooterViewForClass:(Class)aClass;
+- (void)didUpdateToObject:(id)object;
 
 @end
 

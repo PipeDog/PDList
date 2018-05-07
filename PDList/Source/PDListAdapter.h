@@ -32,7 +32,17 @@ NS_ASSUME_NONNULL_BEGIN
 
 @end
 
-@interface PDListAdapter : NSObject <PDListUpdater>
+@protocol PDListTableContext <NSObject>
+
+@property (nonatomic, readonly) UIViewController *viewController;
+@property (nonatomic, readonly) UITableView *tableView;
+
+- (__kindof UITableViewCell *)dequeueReusableCellWithStyle:(UITableViewCellStyle)style forClass:(Class)aClass;
+- (__kindof UITableViewHeaderFooterView *)dequeueReusableHeaderFooterViewForClass:(Class)aClass;
+
+@end
+
+@interface PDListAdapter : NSObject <PDListUpdater, PDListTableContext>
 
 @property (nonatomic, weak) id<PDListAdapterDataSource> dataSource;
 @property (nonatomic, weak) UITableView *tableView;

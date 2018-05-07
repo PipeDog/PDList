@@ -73,6 +73,27 @@
     }
 }
 
+#pragma mark - PDListTableContext Methods
+- (UITableViewCell *)dequeueReusableCellWithStyle:(UITableViewCellStyle)style forClass:(Class)aClass {
+    NSString *cellIdentifier = [NSString stringWithFormat:@"%@_%@", aClass, [NSNumber numberWithInteger:style]];
+    UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+    if (!cell) {
+        cell = [[aClass alloc] initWithStyle:style reuseIdentifier:cellIdentifier];
+    }
+    PDAssert(cell, @"Cell can not be null!");
+    return cell;
+}
+
+- (UITableViewHeaderFooterView *)dequeueReusableHeaderFooterViewForClass:(Class)aClass {
+    NSString *sectionViewIdentifier = NSStringFromClass(aClass);
+    UITableViewHeaderFooterView *sectionView = [self.tableView dequeueReusableHeaderFooterViewWithIdentifier:sectionViewIdentifier];
+    if (!sectionView) {
+        sectionView = [[aClass alloc] initWithReuseIdentifier:sectionViewIdentifier];
+    }
+    PDAssert(sectionView, @"SectionView can not be null!");
+    return sectionView;
+}
+
 #pragma mark - Setter Methods
 - (void)setTableView:(UITableView *)tableView {
     _tableView = tableView;

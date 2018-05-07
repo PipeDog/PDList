@@ -40,9 +40,9 @@ static CGFloat const kUITableViewCellDefaultHeight = 44.f;
         sectionController = [self.dataSource listAdapter:self sectionControllerForSection:section];
         
         NSArray *objects = [self.dataSource objectsForListAdapter:self];
-        sectionController.updater = self;
         sectionController.section = section;
-        sectionController.tableView = self.tableView;
+        sectionController.updater = self;
+        sectionController.tableContext = self;
         [sectionController didUpdateToObject:objects[section]];
     }
     [self.sectionControllers setObject:sectionController forKey:@(section)];

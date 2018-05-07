@@ -30,13 +30,13 @@
     NSIndexPath *indexPath = [NSIndexPath indexPathForRow:index inSection:self.section];
     NSString *text = self.dataArray[index];
     
-    return [self.tableView pd_heightForRowAtIndexPath:indexPath config:^(PDTestCell *cell) {
+    return [self.tableContext.tableView pd_heightForRowAtIndexPath:indexPath config:^(PDTestCell *cell) {
         [cell configData:text];
     }];
 }
 
 - (UIView *)viewForHeader {
-    UITableViewHeaderFooterView *sectionView = [self dequeueReusableHeaderFooterViewForClass:[UITableViewHeaderFooterView class]];
+    UITableViewHeaderFooterView *sectionView = [self.tableContext dequeueReusableHeaderFooterViewForClass:[UITableViewHeaderFooterView class]];
     
     UILabel *textLabel = [sectionView viewWithTag:1000];
     if (!textLabel) {
@@ -50,7 +50,7 @@
 }
 
 - (UITableViewCell *)cellForRowAtIndex:(NSInteger)index {
-    PDTestCell *cell = [self dequeueReusableCellWithStyle:UITableViewCellStyleDefault forClass:[PDTestCell class]];
+    PDTestCell *cell = [self.tableContext dequeueReusableCellWithStyle:UITableViewCellStyleDefault forClass:[PDTestCell class]];
     [cell configData:self.dataArray[index]];
     return cell;
 }

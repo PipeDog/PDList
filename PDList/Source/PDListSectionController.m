@@ -27,27 +27,6 @@
     return nil;
 }
 
-#pragma mark - PDListSectionController
-- (UITableViewCell *)dequeueReusableCellWithStyle:(UITableViewCellStyle)style forClass:(Class)aClass {
-    NSString *cellIdentifier = [NSString stringWithFormat:@"%@_%@", aClass, [NSNumber numberWithInteger:style]];
-    UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:cellIdentifier];
-    if (!cell) {
-        cell = [[aClass alloc] initWithStyle:style reuseIdentifier:cellIdentifier];
-    }
-    PDAssert(cell, @"Cell can not be null!");
-    return cell;
-}
-
-- (UITableViewHeaderFooterView *)dequeueReusableHeaderFooterViewForClass:(Class)aClass {
-    NSString *sectionViewIdentifier = NSStringFromClass(aClass);
-    UITableViewHeaderFooterView *sectionView = [self.tableView dequeueReusableHeaderFooterViewWithIdentifier:sectionViewIdentifier];
-    if (!sectionView) {
-        sectionView = [[aClass alloc] initWithReuseIdentifier:sectionViewIdentifier];
-    }
-    PDAssert(sectionView, @"SectionView can not be null!");
-    return sectionView;
-}
-
 #pragma mark - PDListSectionControllerOverride
 - (void)didUpdateToObject:(id)object {
     PDAssert(NO, @"This method must be override, (%s).", __FUNCTION__);

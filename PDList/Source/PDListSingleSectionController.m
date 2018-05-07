@@ -42,7 +42,7 @@
 }
 
 - (UITableViewCell *)cellForRowAtIndex:(NSInteger)index {
-    UITableViewCell *cell = [self dequeueReusableCellWithStyle:UITableViewCellStyleDefault forClass:self.cellClass];
+    UITableViewCell *cell = [self.tableContext dequeueReusableCellWithStyle:UITableViewCellStyleDefault forClass:self.cellClass];
     self.configBlock(index, cell);
     return cell;
 }
