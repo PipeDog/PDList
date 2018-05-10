@@ -9,6 +9,7 @@
 #import "PDListAdapter.h"
 #import "PDListAdapter+UITableView.h"
 #import "PDListAssert.h"
+#import "PDListSectionController.h"
 
 @interface PDListAdapter ()
 
@@ -57,6 +58,34 @@
         [self.sectionControllers removeObjectForKey:@(indexPath.section)];
     }
     [self.tableView reloadRowsAtIndexPaths:indexPaths withRowAnimation:animation];
+}
+
+- (void)performUpdateSectionControllers:(NSArray<PDListSectionController *> *)sectionControllers withRowAnimation:(UITableViewRowAnimation)animation {
+    if (!sectionControllers.count) return;
+
+    NSMutableIndexSet *indexSet = [NSMutableIndexSet indexSet];
+    
+    for (PDListSectionController *sectionController in sectionControllers) {
+        if ([indexSet containsIndex:sectionController.section]) {
+            continue;
+        }
+        [indexSet addIndex:sectionController.section];
+    }
+    [self reloadSections:indexSet withRowAnimation:animation];
+}
+
+- (void)performUpdateSectionController:(PDListSectionController *)sectionController atIndexs:(NSArray<NSNumber *> *)indexs withRowAnimation:(UITableViewRowAnimation)animation {
+    if (!sectionController) return;
+    if (![self.sectionControllers.allValues containsObject:sectionController]) return;
+
+    NSMutableSet<NSIndexPath *> *indexPaths = [NSMutableSet set];
+    NSInteger section = sectionController.section;
+    
+    for (NSNumber *index in indexs) {
+        NSIndexPath *indexPath = [NSIndexPath indexPathForRow:[index integerValue] inSection:section];
+        [indexPaths addObject:indexPath];
+    }
+    [self reloadRowsAtIndexPaths:[indexPaths allObjects] withRowAnimation:animation];
 }
 
 - (void)addEmptyViewIfNecessary {
