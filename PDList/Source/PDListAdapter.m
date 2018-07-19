@@ -61,6 +61,7 @@
 }
 
 - (void)performUpdateSectionControllers:(NSArray<PDListSectionController *> *)sectionControllers withRowAnimation:(UITableViewRowAnimation)animation {
+    PDAssertMainThread();
     if (!sectionControllers.count) return;
 
     NSMutableIndexSet *indexSet = [NSMutableIndexSet indexSet];
@@ -75,6 +76,7 @@
 }
 
 - (void)performUpdateSectionController:(PDListSectionController *)sectionController atIndexs:(NSArray<NSNumber *> *)indexs withRowAnimation:(UITableViewRowAnimation)animation {
+    PDAssertMainThread();
     if (!sectionController) return;
     if (![self.sectionControllers.allValues containsObject:sectionController]) return;
 
@@ -160,7 +162,7 @@
     
     for (NSIndexPath *indexPath in visibleIndexPaths) {
         PDListSectionController *sectionController = [self.sectionControllers objectForKey:@(indexPath.section)];
-        PDAssert(sectionController != nil, @"Section controller nil for cell in section %zd", indexPath.section);
+        PDAssert(sectionController != nil, @"Section controller nil for cell in section %ld", (long)indexPath.section);
         if (sectionController) {
             [visibleSectionControllers addObject:sectionController];
         }
