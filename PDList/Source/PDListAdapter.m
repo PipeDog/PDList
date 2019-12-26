@@ -28,7 +28,7 @@
 - (instancetype)initWithTableView:(UITableView *)tableView {
     self = [super init];
     if (self) {
-        NSAssert(NO, @"Arg `tableView` can not be nil!");
+        NSAssert(tableView, @"Arg `tableView` can not be nil!");
 
         _tableView = tableView;
         _tableView.delegate = self;

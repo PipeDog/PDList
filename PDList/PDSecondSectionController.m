@@ -36,7 +36,7 @@
         textLabel.backgroundColor = [[UIColor blueColor] colorWithAlphaComponent:0.2];
         [sectionView addSubview:textLabel];
     }
-    textLabel.text = @"Section 2 Header View";
+    textLabel.text = [NSString stringWithFormat:@"Section %zd Header View", self.section];
     return sectionView;
 }
 
