@@ -119,6 +119,32 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		DDC2F91C23B45D2200D16B88 /* ListAdapter */ = {
+			isa = PBXGroup;
+			children = (
+				DDC2F91623B44D0D00D16B88 /* PDListAdapter+Internal.h */,
+				EC223FCB2060DD8600E80D7A /* PDListAdapter.h */,
+				EC223FCC2060DD8600E80D7A /* PDListAdapter.m */,
+				EC223FF2206209EB00E80D7A /* PDListAdapter+UITableView.h */,
+				EC223FF3206209EB00E80D7A /* PDListAdapter+UITableView.m */,
+			);
+			path = ListAdapter;
+			sourceTree = "<group>";
+		};
+		DDC2F91D23B45D3F00D16B88 /* SectionController */ = {
+			isa = PBXGroup;
+			children = (
+				DDC2F91823B459C500D16B88 /* PDListSectionController+Internal.h */,
+				EC223FC82060DD6D00E80D7A /* PDListSectionController.h */,
+				EC223FC92060DD6D00E80D7A /* PDListSectionController.m */,
+				EC223FF82062280600E80D7A /* PDListSingleSectionController.h */,
+				EC223FF92062280600E80D7A /* PDListSingleSectionController.m */,
+				DDC2F91923B45B8B00D16B88 /* PDListSectionControllerConfiguration.h */,
+				DDC2F91A23B45B8B00D16B88 /* PDListSectionControllerConfiguration.m */,
+			);
+			path = SectionController;
+			sourceTree = "<group>";
+		};
 		EC223FE1206116FF00E80D7A /* PDCellAutoHeight */ = {
 			isa = PBXGroup;
 			children = (
@@ -202,18 +228,8 @@
 			children = (
 				EC2240012062470E00E80D7A /* PDList.h */,
 				EC223FF72062262800E80D7A /* PDListAssert.h */,
-				DDC2F91823B459C500D16B88 /* PDListSectionController+Internal.h */,
-				EC223FC82060DD6D00E80D7A /* PDListSectionController.h */,
-				EC223FC92060DD6D00E80D7A /* PDListSectionController.m */,
-				DDC2F91623B44D0D00D16B88 /* PDListAdapter+Internal.h */,
-				EC223FCB2060DD8600E80D7A /* PDListAdapter.h */,
-				EC223FCC2060DD8600E80D7A /* PDListAdapter.m */,
-				EC223FF2206209EB00E80D7A /* PDListAdapter+UITableView.h */,
-				EC223FF3206209EB00E80D7A /* PDListAdapter+UITableView.m */,
-				EC223FF82062280600E80D7A /* PDListSingleSectionController.h */,
-				EC223FF92062280600E80D7A /* PDListSingleSectionController.m */,
-				DDC2F91923B45B8B00D16B88 /* PDListSectionControllerConfiguration.h */,
-				DDC2F91A23B45B8B00D16B88 /* PDListSectionControllerConfiguration.m */,
+				DDC2F91D23B45D3F00D16B88 /* SectionController */,
+				DDC2F91C23B45D2200D16B88 /* ListAdapter */,
 			);
 			path = Source;
 			sourceTree = "<group>";

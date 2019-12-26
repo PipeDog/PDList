@@ -6,7 +6,6 @@
 //  Copyright © 2018年 PipeDog. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
 @class PDListAdapter;

@@ -9,8 +9,8 @@
 #ifndef PDList_h
 #define PDList_h
 
-#import "PDListSectionController.h"
 #import "PDListAdapter.h"
+#import "PDListSectionController.h"
 #import "PDListSingleSectionController.h"
 
 #endif /* PDList_h */
