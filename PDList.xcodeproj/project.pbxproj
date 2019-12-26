@@ -46,6 +46,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		DDC2F91623B44D0D00D16B88 /* PDListAdapter+Internal.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "PDListAdapter+Internal.h"; sourceTree = "<group>"; };
 		EC223FC82060DD6D00E80D7A /* PDListSectionController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PDListSectionController.h; sourceTree = "<group>"; };
 		EC223FC92060DD6D00E80D7A /* PDListSectionController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PDListSectionController.m; sourceTree = "<group>"; };
 		EC223FCB2060DD8600E80D7A /* PDListAdapter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PDListAdapter.h; sourceTree = "<group>"; };
@@ -199,6 +200,7 @@
 				EC223FF72062262800E80D7A /* PDListAssert.h */,
 				EC223FC82060DD6D00E80D7A /* PDListSectionController.h */,
 				EC223FC92060DD6D00E80D7A /* PDListSectionController.m */,
+				DDC2F91623B44D0D00D16B88 /* PDListAdapter+Internal.h */,
 				EC223FCB2060DD8600E80D7A /* PDListAdapter.h */,
 				EC223FCC2060DD8600E80D7A /* PDListAdapter.m */,
 				EC223FF2206209EB00E80D7A /* PDListAdapter+UITableView.h */,

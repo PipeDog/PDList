@@ -16,7 +16,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @protocol PDListAdapterDataSource <NSObject>
 
-- (NSArray *)objectsForListAdapter:(PDListAdapter *)listAdapter;
+- (NSInteger)numberOfSectionControllersForListAdapter:(PDListAdapter *)listAdapter;
 - (PDListSectionController *)listAdapter:(PDListAdapter *)listAdapter sectionControllerForSection:(NSInteger)section;
 
 @optional
@@ -48,12 +48,13 @@ NS_ASSUME_NONNULL_BEGIN
 @interface PDListAdapter : NSObject <PDListUpdater, PDListTableContext>
 
 @property (nonatomic, weak) id<PDListAdapterDataSource> dataSource;
-@property (nonatomic, weak) UITableView *tableView;
-@property (nonatomic, weak) UIViewController *viewController;
 @property (nonatomic, weak, nullable) id<UIScrollViewDelegate> scrollDelegate;
-@property (nonatomic, readonly) NSArray<PDListSectionController *> *visibleSectionControllers;
 
-- (instancetype)initWithTableView:(UITableView *)tableView;
+@property (nonatomic, weak, readonly) UITableView *tableView;
+@property (nonatomic, weak, nullable) UIViewController *viewController;
+@property (readonly) NSArray<PDListSectionController *> *visibleSectionControllers;
+
+- (instancetype)initWithTableView:(UITableView *)tableView NS_DESIGNATED_INITIALIZER;
 
 @end
 

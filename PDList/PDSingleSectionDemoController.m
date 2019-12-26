@@ -27,9 +27,8 @@
 }
 
 #pragma mark - PDListAdapterDataSource Methods
-- (NSArray *)objectsForListAdapter:(PDListAdapter *)listAdapter {
-    // Wrapper into array.
-    return @[self.items];
+- (NSInteger)numberOfSectionControllersForListAdapter:(PDListAdapter *)listAdapter {
+    return 1;
 }
 
 - (PDListSectionController *)listAdapter:(PDListAdapter *)listAdapter sectionControllerForSection:(NSInteger)section {
@@ -42,6 +41,7 @@
         return 50.f + index * 20;
     }];
     sectionController.selectionDelegate = self;
+    [sectionController didUpdateToObject:self.items];
     return sectionController;
 }
 

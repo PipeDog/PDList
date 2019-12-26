@@ -8,16 +8,6 @@
 
 #import "PDListAdapter.h"
 
-@protocol PDListAdapterPrivateProtocol <NSObject>
-
-@required
-@property (nonatomic, strong) NSMutableDictionary<NSNumber *, PDListSectionController *> *sectionControllers;
-
-@end
-
-@interface PDListAdapter () <PDListAdapterPrivateProtocol>
-@end
-
 @interface PDListAdapter (UITableViewDataSource) <UITableViewDataSource>
 @end
 

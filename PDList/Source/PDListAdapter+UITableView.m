@@ -7,6 +7,7 @@
 //
 
 #import "PDListAdapter+UITableView.h"
+#import "PDListAdapter+Internal.h"
 #import "PDListSectionController.h"
 
 static CGFloat const kUITableViewCellDefaultHeight = 44.f;
@@ -15,9 +16,9 @@ static CGFloat const kUITableViewCellDefaultHeight = 44.f;
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     if (!self.dataSource) return 0;
-    if (![self.dataSource respondsToSelector:@selector(objectsForListAdapter:)]) return 0;
+    if (![self.dataSource respondsToSelector:@selector(numberOfSectionControllersForListAdapter:)]) return 0;
     
-    return [self.dataSource objectsForListAdapter:self].count;
+    return [self.dataSource numberOfSectionControllersForListAdapter:self];
 }
 
 #pragma clang diagnostic push
@@ -38,12 +39,9 @@ static CGFloat const kUITableViewCellDefaultHeight = 44.f;
     PDListSectionController *sectionController = [self.sectionControllers objectForKey:@(section)];
     if (!sectionController) {
         sectionController = [self.dataSource listAdapter:self sectionControllerForSection:section];
-        
-        NSArray *objects = [self.dataSource objectsForListAdapter:self];
         sectionController.section = section;
         sectionController.updater = self;
         sectionController.tableContext = self;
-        [sectionController didUpdateToObject:objects[section]];
     }
     [self.sectionControllers setObject:sectionController forKey:@(section)];
     return sectionController;

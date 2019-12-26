@@ -23,7 +23,7 @@
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
-    [self.listAdapter reloadData];
+    // [self.listAdapter reloadData];
 }
 
 - (void)viewDidLoad {
@@ -41,15 +41,19 @@
 }
 
 #pragma mark - PDListAdapterDataSource Methods
-- (NSArray *)objectsForListAdapter:(PDListAdapter *)listAdapter {
-    return self.dataArray;
+- (NSInteger)numberOfSectionControllersForListAdapter:(PDListAdapter *)listAdapter {
+    return self.dataArray.count;
 }
 
 - (PDListSectionController *)listAdapter:(PDListAdapter *)listAdapter sectionControllerForSection:(NSInteger)section {
+    PDListSectionController *sectionController;
     if (section == 0) {
-        return [[PDFirstSectionController alloc] init];
+        sectionController = [[PDFirstSectionController alloc] init];
+    } else {
+        sectionController = [[PDSecondSectionController alloc] init];
     }
-    return [[PDSecondSectionController alloc] init];
+    [sectionController didUpdateToObject:self.dataArray[section]];
+    return sectionController;
 }
 
 - (UIView *)emptyViewForListAdapter:(PDListAdapter *)listAdapter {
@@ -84,7 +88,7 @@
         NSArray *array1 = @[@"One line of code to implement automatic layout. 一行代码搞定自动布局！支持Cell和Tableview高度自适应，Label和ScrollView内容自适应，致力于做最简单易用的AutoLayout库。The most easy way for autoLayout. Based on runtime.",
                             @"One line of code to implement automatic layout. 一行代码搞定自动布局！支持Cell和Tableview高度自适应，Label和ScrollView内容自适应，致力于做最简单易用的AutoLayout库。The most easy way for autoLayout. Based on runtime.One line of code to implement automatic layout. 一行代码搞定自动布局！支持Cell和Tableview高度自适应，Label和ScrollView内容自适应，致力于做最简单易用的AutoLayout库。The most easy way for autoLayout. Based on runtime.",
                             @"One line of code to implement automatic layout. 一行代码搞定自动布局！支持Cell和Tableview高度自适应，Label和ScrollView内容自适应，致力于做最简单易用的AutoLayout库。The most easy way for autoLayout. Based on runtime."];
-        _dataArray = @[array0, array1];
+        _dataArray = @[array0, array1, [array1 copy], [array1 copy]];
     }
     return _dataArray;
 }

@@ -10,6 +10,7 @@
 #import "PDListAdapter+UITableView.h"
 #import "PDListAssert.h"
 #import "PDListSectionController.h"
+#import "PDListAdapter+Internal.h"
 
 @interface PDListAdapter ()
 
@@ -19,12 +20,19 @@
 
 @implementation PDListAdapter
 
-@synthesize sectionControllers = _sectionControllers;
+- (instancetype)init {
+    UITableView *tableView;
+    return [self initWithTableView:tableView];
+}
 
 - (instancetype)initWithTableView:(UITableView *)tableView {
     self = [super init];
     if (self) {
-        self.tableView = tableView;
+        NSAssert(NO, @"Arg `tableView` can not be nil!");
+
+        _tableView = tableView;
+        _tableView.delegate = self;
+        _tableView.dataSource = self;
     }
     return self;
 }
@@ -98,8 +106,9 @@
         _emptyView = nil;
     }
     
-    if ([self.dataSource objectsForListAdapter:self].count == 0) {
+    if ([self.dataSource numberOfSectionControllersForListAdapter:self] <= 0) {
         self.emptyView = [self.dataSource emptyViewForListAdapter:self];
+        self.emptyView.frame = self.tableView.bounds;
         [self.tableView addSubview:self.emptyView];
     }
 }
@@ -123,13 +132,6 @@
     }
     PDAssert(sectionView, @"SectionView can not be null!");
     return sectionView;
-}
-
-#pragma mark - Setter Methods
-- (void)setTableView:(UITableView *)tableView {
-    _tableView = tableView;
-    _tableView.delegate = self;
-    _tableView.dataSource = self;
 }
 
 #pragma mark - Getter Methods

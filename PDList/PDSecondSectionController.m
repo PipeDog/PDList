@@ -33,10 +33,10 @@
     if (!textLabel) {
         textLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 200, 40)];
         textLabel.tag = 1000;
-        textLabel.text = @"Section 2 Header View";
         textLabel.backgroundColor = [[UIColor blueColor] colorWithAlphaComponent:0.2];
         [sectionView addSubview:textLabel];
     }
+    textLabel.text = @"Section 2 Header View";
     return sectionView;
 }
 

@@ -41,11 +41,11 @@
     UILabel *textLabel = [sectionView viewWithTag:1000];
     if (!textLabel) {
         textLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 200, 40)];
-        textLabel.text = @"Section 1 Header View";
         textLabel.tag = 1000;
         textLabel.backgroundColor = [[UIColor blueColor] colorWithAlphaComponent:0.2];
         [sectionView addSubview:textLabel];
     }
+    textLabel.text = @"Section 1 Header View";
     return sectionView;
 }
 
