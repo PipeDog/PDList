@@ -42,9 +42,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface PDListSectionController : NSObject <PDListSectionControllerDataSource, PDListSectionControllerDelegate, UIScrollViewDelegate>
 
-@property (nonatomic, assign) NSInteger section;
-@property (nonatomic, weak) id<PDListUpdater> updater;
-@property (nonatomic, weak) id<PDListTableContext> tableContext;
+@property (nonatomic, assign, readonly) NSInteger section;
+@property (nonatomic, weak, readonly) id<PDListUpdater> updater;
+@property (nonatomic, weak, readonly) id<PDListTableContext> tableContext;
 
 - (void)didUpdateToObject:(id)object;
 

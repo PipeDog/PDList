@@ -37,8 +37,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @protocol PDListTableContext <NSObject>
 
-@property (nonatomic, readonly) UIViewController *viewController;
-@property (nonatomic, readonly) UITableView *tableView;
+@property (nullable, readonly) UIViewController *viewController;
+@property (readonly) UITableView *tableView;
 
 - (__kindof UITableViewCell *)dequeueReusableCellWithStyle:(UITableViewCellStyle)style forClass:(Class)aClass;
 - (__kindof UITableViewHeaderFooterView *)dequeueReusableHeaderFooterViewForClass:(Class)aClass;

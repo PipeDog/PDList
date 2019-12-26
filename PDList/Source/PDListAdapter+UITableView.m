@@ -9,6 +9,7 @@
 #import "PDListAdapter+UITableView.h"
 #import "PDListAdapter+Internal.h"
 #import "PDListSectionController.h"
+#import "PDListSectionController+Internal.h"
 
 static CGFloat const kUITableViewCellDefaultHeight = 44.f;
 
@@ -39,9 +40,12 @@ static CGFloat const kUITableViewCellDefaultHeight = 44.f;
     PDListSectionController *sectionController = [self.sectionControllers objectForKey:@(section)];
     if (!sectionController) {
         sectionController = [self.dataSource listAdapter:self sectionControllerForSection:section];
-        sectionController.section = section;
-        sectionController.updater = self;
-        sectionController.tableContext = self;
+        
+        id<PDListSectionControllerConfiguration> configuration = [[PDListSectionControllerConfiguration alloc] init];
+        configuration.section = section;
+        configuration.updater = self;
+        configuration.tableContext = self;
+        [sectionController _updateConfiguration:configuration];
     }
     [self.sectionControllers setObject:sectionController forKey:@(section)];
     return sectionController;
