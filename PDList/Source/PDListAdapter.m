@@ -28,7 +28,7 @@
 - (instancetype)initWithTableView:(UITableView *)tableView {
     self = [super init];
     if (self) {
-        NSAssert(tableView, @"Arg `tableView` can not be nil!");
+        PDAssert(tableView, @"Arg `tableView` can not be nil!");
 
         _tableView = tableView;
         _tableView.delegate = self;
@@ -115,6 +115,8 @@
 
 #pragma mark - PDListTableContext Methods
 - (UITableViewCell *)dequeueReusableCellWithStyle:(UITableViewCellStyle)style forClass:(Class)aClass {
+    PDAssert(aClass, @"Arg `aClass` can not be nil!");
+    
     NSString *cellIdentifier = [NSString stringWithFormat:@"%@_%@", aClass, [NSNumber numberWithInteger:style]];
     UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:cellIdentifier];
     if (!cell) {
@@ -125,6 +127,8 @@
 }
 
 - (UITableViewHeaderFooterView *)dequeueReusableHeaderFooterViewForClass:(Class)aClass {
+    PDAssert(aClass, @"Arg `aClass` can not be nil!");
+
     NSString *sectionViewIdentifier = NSStringFromClass(aClass);
     UITableViewHeaderFooterView *sectionView = [self.tableView dequeueReusableHeaderFooterViewWithIdentifier:sectionViewIdentifier];
     if (!sectionView) {
