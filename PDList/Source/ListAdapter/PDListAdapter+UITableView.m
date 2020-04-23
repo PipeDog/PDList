@@ -30,7 +30,7 @@ static CGFloat const kUITableViewCellDefaultHeight = 44.f;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    PDListSectionController *sectionController = [self.sectionControllers objectForKey:@(indexPath.section)];
+    PDListSectionController *sectionController = [self sectionControllerForSection:indexPath.section];
     return [sectionController cellForRowAtIndex:indexPath.row];
 }
 #pragma clang diagnostic pop
@@ -46,8 +46,9 @@ static CGFloat const kUITableViewCellDefaultHeight = 44.f;
         configuration.updater = self;
         configuration.tableContext = self;
         [sectionController _updateConfiguration:configuration];
+        
+        [self.sectionControllers setObject:sectionController forKey:@(section)];
     }
-    [self.sectionControllers setObject:sectionController forKey:@(section)];
     return sectionController;
 }
 
@@ -56,7 +57,7 @@ static CGFloat const kUITableViewCellDefaultHeight = 44.f;
 @implementation PDListAdapter (UITableViewDelegate)
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    PDListSectionController *sectionController = [self.sectionControllers objectForKey:@(indexPath.section)];
+    PDListSectionController *sectionController = [self sectionControllerForSection:indexPath.section];
     if ([sectionController respondsToSelector:@selector(heightForRowAtIndex:)]) {
         return [sectionController heightForRowAtIndex:indexPath.row];
     }
@@ -64,7 +65,7 @@ static CGFloat const kUITableViewCellDefaultHeight = 44.f;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
-    PDListSectionController *sectionController = [self.sectionControllers objectForKey:@(section)];
+    PDListSectionController *sectionController = [self sectionControllerForSection:section];
     if ([sectionController respondsToSelector:@selector(heightForHeader)]) {
         return [sectionController heightForHeader];
     }
@@ -72,7 +73,7 @@ static CGFloat const kUITableViewCellDefaultHeight = 44.f;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
-    PDListSectionController *sectionController = [self.sectionControllers objectForKey:@(section)];
+    PDListSectionController *sectionController = [self sectionControllerForSection:section];
     if ([sectionController respondsToSelector:@selector(heightForFooter)]) {
         return [sectionController heightForFooter];
     }
@@ -80,7 +81,7 @@ static CGFloat const kUITableViewCellDefaultHeight = 44.f;
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
-    PDListSectionController *sectionController = [self.sectionControllers objectForKey:@(section)];
+    PDListSectionController *sectionController = [self sectionControllerForSection:section];
     if ([sectionController respondsToSelector:@selector(viewForHeader)]) {
         return [sectionController viewForHeader];
     }
@@ -88,7 +89,7 @@ static CGFloat const kUITableViewCellDefaultHeight = 44.f;
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section {
-    PDListSectionController *sectionController = [self.sectionControllers objectForKey:@(section)];
+    PDListSectionController *sectionController = [self sectionControllerForSection:section];
     if ([sectionController respondsToSelector:@selector(viewForFooter)]) {
         return [sectionController viewForFooter];
     }
@@ -98,28 +99,28 @@ static CGFloat const kUITableViewCellDefaultHeight = 44.f;
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:NO];
     
-    PDListSectionController *sectionController = [self.sectionControllers objectForKey:@(indexPath.section)];
+    PDListSectionController *sectionController = [self sectionControllerForSection:indexPath.section];
     if ([sectionController respondsToSelector:@selector(didSelectRowAtIndex:)]) {
         [sectionController didSelectRowAtIndex:indexPath.row];
     }
 }
 
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
-    PDListSectionController *sectionController = [self.sectionControllers objectForKey:@(indexPath.section)];
+    PDListSectionController *sectionController = [self sectionControllerForSection:indexPath.section];
     if ([sectionController respondsToSelector:@selector(willDisplayCell:forRowAtIndex:)]) {
         [sectionController willDisplayCell:cell forRowAtIndex:indexPath.row];
     }
 }
 
 - (void)tableView:(UITableView *)tableView didEndDisplayingCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
-    PDListSectionController *sectionController = [self.sectionControllers objectForKey:@(indexPath.section)];
+    PDListSectionController *sectionController = [self sectionControllerForSection:indexPath.section];
     if ([sectionController respondsToSelector:@selector(didEndDisplayingCell:forRowAtIndex:)]) {
         [sectionController didEndDisplayingCell:cell forRowAtIndex:indexPath.row];
     }
 }
 
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-    PDListSectionController *sectionController = [self.sectionControllers objectForKey:@(indexPath.section)];
+    PDListSectionController *sectionController = [self sectionControllerForSection:indexPath.section];
     if ([sectionController respondsToSelector:@selector(canEditRowAtIndex:)]) {
         return [sectionController canEditRowAtIndex:indexPath.row];
     }
@@ -127,7 +128,7 @@ static CGFloat const kUITableViewCellDefaultHeight = 44.f;
 }
 
 - (UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath {
-    PDListSectionController *sectionController = [self.sectionControllers objectForKey:@(indexPath.section)];
+    PDListSectionController *sectionController = [self sectionControllerForSection:indexPath.section];
     if ([sectionController respondsToSelector:@selector(editingStyleAtIndex:)]) {
         return [sectionController editingStyleAtIndex:indexPath.row];
     }
@@ -135,7 +136,7 @@ static CGFloat const kUITableViewCellDefaultHeight = 44.f;
 }
 
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-    PDListSectionController *sectionController = [self.sectionControllers objectForKey:@(indexPath.section)];
+    PDListSectionController *sectionController = [self sectionControllerForSection:indexPath.section];
     if ([sectionController respondsToSelector:@selector(commitEditingStyle:forRowAtIndex:)]) {
         [sectionController commitEditingStyle:editingStyle forRowAtIndex:indexPath.row];
     }
