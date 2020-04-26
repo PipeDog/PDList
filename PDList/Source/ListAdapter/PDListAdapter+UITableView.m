@@ -113,6 +113,10 @@ static CGFloat const kUITableViewCellDefaultHeight = 44.f;
 }
 
 - (void)tableView:(UITableView *)tableView didEndDisplayingCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (!(indexPath.section < self.sectionControllers.count)) {
+        // Tells the delegate that the specified cell was removed from the table.
+        return;
+    }
     PDListSectionController *sectionController = [self sectionControllerForSection:indexPath.section];
     if ([sectionController respondsToSelector:@selector(didEndDisplayingCell:forRowAtIndex:)]) {
         [sectionController didEndDisplayingCell:cell forRowAtIndex:indexPath.row];
