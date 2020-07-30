@@ -46,6 +46,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, weak, readonly) id<PDListUpdater> updater;
 @property (nonatomic, weak, readonly) id<PDListTableContext> tableContext;
 
+- (void)setupInitializeConfiguration;
+
 - (void)didUpdateToObject:(id)object;
 
 @end

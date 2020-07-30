@@ -29,6 +29,10 @@
 }
 
 #pragma mark - PDListSectionControllerOverride
+- (void)setupInitializeConfiguration {
+    // You can override this method.
+}
+
 - (void)didUpdateToObject:(id)object {
     PDAssert(NO, @"This method must be override, (%s).", __FUNCTION__);
 }
@@ -40,6 +44,8 @@
     _section = configuration.section;
     _updater = configuration.updater;
     _tableContext = configuration.tableContext;
+    
+    [self setupInitializeConfiguration];
 }
 
 @end
