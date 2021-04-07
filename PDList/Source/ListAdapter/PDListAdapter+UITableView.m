@@ -39,14 +39,15 @@ static CGFloat const kUITableViewCellDefaultHeight = 44.f;
 - (PDListSectionController *)sectionControllerForSection:(NSInteger)section {
     PDListSectionController *sectionController = [self.sectionControllers objectForKey:@(section)];
     if (!sectionController) {
+        // At `NEListSectionController.m`
+        extern void PDListSectionControllerPushThread(id<PDListUpdater>, id<PDListTableContext>, NSInteger);
+        extern void PDListSectionControllerPopThread(void);
+
+        PDListSectionControllerPushThread(self, self, section);
         sectionController = [self.dataSource listAdapter:self sectionControllerForSection:section];
-        
-        id<PDListSectionControllerConfiguration> configuration = [[PDListSectionControllerConfiguration alloc] init];
-        configuration.section = section;
-        configuration.updater = self;
-        configuration.tableContext = self;
-        [sectionController _updateConfiguration:configuration];
-        
+        if (sectionController.section == NSNotFound) { [sectionController _threadContextDidUpdate]; }
+        PDListSectionControllerPopThread();
+
         [self.sectionControllers setObject:sectionController forKey:@(section)];
     }
     return sectionController;

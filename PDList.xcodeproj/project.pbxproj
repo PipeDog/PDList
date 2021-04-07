@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		DDC2F91B23B45B8B00D16B88 /* PDListSectionControllerConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = DDC2F91A23B45B8B00D16B88 /* PDListSectionControllerConfiguration.m */; };
 		EC223FCA2060DD6D00E80D7A /* PDListSectionController.m in Sources */ = {isa = PBXBuildFile; fileRef = EC223FC92060DD6D00E80D7A /* PDListSectionController.m */; };
 		EC223FCD2060DD8600E80D7A /* PDListAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = EC223FCC2060DD8600E80D7A /* PDListAdapter.m */; };
 		EC223FE0206115EE00E80D7A /* PDTestCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EC223FDF206115EE00E80D7A /* PDTestCell.m */; };
@@ -47,10 +46,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		DD1036DA261D5F8F00FD5AA5 /* PDListSectionController+Internal.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "PDListSectionController+Internal.h"; sourceTree = "<group>"; };
 		DDC2F91623B44D0D00D16B88 /* PDListAdapter+Internal.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "PDListAdapter+Internal.h"; sourceTree = "<group>"; };
-		DDC2F91823B459C500D16B88 /* PDListSectionController+Internal.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "PDListSectionController+Internal.h"; sourceTree = "<group>"; };
-		DDC2F91923B45B8B00D16B88 /* PDListSectionControllerConfiguration.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PDListSectionControllerConfiguration.h; sourceTree = "<group>"; };
-		DDC2F91A23B45B8B00D16B88 /* PDListSectionControllerConfiguration.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PDListSectionControllerConfiguration.m; sourceTree = "<group>"; };
 		EC223FC82060DD6D00E80D7A /* PDListSectionController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PDListSectionController.h; sourceTree = "<group>"; };
 		EC223FC92060DD6D00E80D7A /* PDListSectionController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PDListSectionController.m; sourceTree = "<group>"; };
 		EC223FCB2060DD8600E80D7A /* PDListAdapter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PDListAdapter.h; sourceTree = "<group>"; };
@@ -134,13 +131,11 @@
 		DDC2F91D23B45D3F00D16B88 /* SectionController */ = {
 			isa = PBXGroup;
 			children = (
-				DDC2F91823B459C500D16B88 /* PDListSectionController+Internal.h */,
 				EC223FC82060DD6D00E80D7A /* PDListSectionController.h */,
 				EC223FC92060DD6D00E80D7A /* PDListSectionController.m */,
 				EC223FF82062280600E80D7A /* PDListSingleSectionController.h */,
 				EC223FF92062280600E80D7A /* PDListSingleSectionController.m */,
-				DDC2F91923B45B8B00D16B88 /* PDListSectionControllerConfiguration.h */,
-				DDC2F91A23B45B8B00D16B88 /* PDListSectionControllerConfiguration.m */,
+				DD1036DA261D5F8F00FD5AA5 /* PDListSectionController+Internal.h */,
 			);
 			path = SectionController;
 			sourceTree = "<group>";
@@ -372,7 +367,6 @@
 				EC223FF1206117FE00E80D7A /* PDSecondSectionController.m in Sources */,
 				EC223FE92061171600E80D7A /* UITableViewCell+PDCellAutoHeight.m in Sources */,
 				EC223FCD2060DD8600E80D7A /* PDListAdapter.m in Sources */,
-				DDC2F91B23B45B8B00D16B88 /* PDListSectionControllerConfiguration.m in Sources */,
 				EC223FFA2062280600E80D7A /* PDListSingleSectionController.m in Sources */,
 				EC223FCA2060DD6D00E80D7A /* PDListSectionController.m in Sources */,
 				EC223FE0206115EE00E80D7A /* PDTestCell.m in Sources */,
