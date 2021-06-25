@@ -35,19 +35,21 @@ static CGFloat const kUITableViewCellDefaultHeight = 44.f;
 }
 #pragma clang diagnostic pop
 
-// Get sectionController from self.sectionControllers with section, if failed, get from dataSource method <objectsForListAdapter:> again.
+// Get sectionController from self.sectionControllers with section, if failed, get from dataSource method <listAdapter:sectionControllerForSection:> again.
 - (PDListSectionController *)sectionControllerForSection:(NSInteger)section {
+    // At `PDListSectionController.m`
+    extern void PDListSectionControllerPushThread(id<PDListUpdater>, id<PDListTableContext>, NSInteger);
+    extern void PDListSectionControllerPopThread(void);
+
     PDListSectionController *sectionController = [self.sectionControllers objectForKey:@(section)];
     if (!sectionController) {
+        PDListSectionControllerPushThread(self, self, section);
         sectionController = [self.dataSource listAdapter:self sectionControllerForSection:section];
         self.sectionControllers[@(section)] = sectionController;
+        PDListSectionControllerPopThread();
     }
 
     if (sectionController.section != section) {
-        // At `PDListSectionController.m`
-        extern void PDListSectionControllerPushThread(id<PDListUpdater>, id<PDListTableContext>, NSInteger);
-        extern void PDListSectionControllerPopThread(void);
-
         PDListSectionControllerPushThread(self, self, section);
         [sectionController _threadContextDidUpdate];
         PDListSectionControllerPopThread();
